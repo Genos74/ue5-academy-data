@@ -796,9 +796,8 @@
         ]
       }
     ]
-  }
-]
-{
+  },
+  {
   "id": 10,
   "track": "Real Projects: Beginner",
   "title": "Module 10: Flappy Bird Clone",
@@ -1335,3 +1334,4 @@
     }
   ]
 }
+]
