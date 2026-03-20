@@ -1,0 +1,800 @@
+[
+  {
+    "id": 1,
+    "track": "Year 1: Software Architecture",
+    "title": "Module 1: Engine Acquisition",
+    "emoji": "🚀",
+    "color": "#00C8FF",
+    "desc": "Hardware constraints, Launchers, and Installation",
+    "lessons": [
+      {
+        "id": "1-1",
+        "title": "1. The Hardware Pipeline",
+        "xp": 50,
+        "duration": "Sem 1, Wk 1",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Silicon Realities",
+            "icon": "💻",
+            "body": "Unreal Engine 5 is not a simple program; it is a real-time rendering powerhouse used for Hollywood films and AAA games. \n\nBefore downloading, you must understand hardware constraints. UE5 streams high-fidelity data (Nanite geometry and 8K textures) directly from your storage drive to your GPU. If you install UE5 on a mechanical Hard Disk Drive (HDD), the read-head physically cannot spin fast enough to load the data. The editor will freeze for minutes at a time.",
+            "tip": "Rule #1: You MUST install Unreal Engine on a Solid State Drive (SATA SSD or NVMe M.2)."
+          },
+          {
+            "type": "quiz",
+            "q": "What component is most likely to cause severe editor freezing if it is not fast enough to stream UE5 asset data?",
+            "opts": [
+              "The CPU Cache",
+              "A Mechanical Hard Drive (HDD)",
+              "The System RAM",
+              "The Motherboard"
+            ],
+            "ans": 1,
+            "explain": "Mechanical drives max out at ~150 MB/s, whereas NVMe SSDs can reach 7,000+ MB/s, eliminating asset streaming bottlenecks."
+          }
+        ]
+      },
+      {
+        "id": "1-2",
+        "title": "2. Epic Games Launcher",
+        "xp": 50,
+        "duration": "Sem 1, Wk 1",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "The Hub",
+            "icon": "📥",
+            "body": "Epic Games does not provide direct executable downloads for UE5. You must install the **Epic Games Launcher**.\n\nOnce installed, navigate to the **Unreal Engine** tab on the left sidebar. This isolated environment contains the Engine library, the community marketplace, and your local project vault.",
+            "tip": "Create a dedicated Epic Games account strictly for your development work to keep your purchased game assets separate from your personal gaming library."
+          }
+        ]
+      },
+      {
+        "id": "1-3",
+        "title": "3. Version Management",
+        "xp": 50,
+        "duration": "Sem 1, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "The Library Tab",
+            "icon": "📚",
+            "body": "In the Unreal Engine section, click the **Library** tab at the top. \n\nClick the yellow '+' icon next to 'Engine Versions'. UE5 frequently updates (e.g., 5.1, 5.2, 5.3). \n\n*Crucial Engineering Concept:* Upgrading a project to a newer engine version is permanent. You cannot downgrade a project from 5.3 back to 5.2 without corrupting the files.",
+            "tip": "Always 'Clone' your project before upgrading to a new engine version!"
+          },
+          {
+            "type": "quiz",
+            "q": "If you upgrade a project from Unreal Engine 5.1 to 5.3, can you later open it in 5.1 if you find a bug?",
+            "opts": [
+              "Yes, it is backward compatible",
+              "No, upgrading project files alters their deep structure, making them permanently incompatible with older versions",
+              "Yes, but only if you delete the code",
+              "Yes, using a plugin"
+            ],
+            "ans": 1,
+            "explain": "Forward compatibility is supported. Backward compatibility is mathematically impossible due to new engine code structures."
+          }
+        ]
+      },
+      {
+        "id": "1-4",
+        "title": "4. Storage Optimization",
+        "xp": 60,
+        "duration": "Sem 1, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Target Platforms",
+            "icon": "⚙️",
+            "body": "Before clicking 'Install', you must click **Options** on the engine version. \n\nBy default, UE5 installs compilers for Windows, Android, iOS, and Linux. This takes over 100GB of space. If you are only making PC games, uncheck Android, iOS, and Linux to instantly save 30-40GB of storage.",
+            "tip": "You can always add these compilers later if you decide to port your game to a mobile device!"
+          }
+        ]
+      },
+      {
+        "id": "1-5",
+        "title": "5. Module 1 Mega Quiz",
+        "xp": 150,
+        "duration": "Sem 1, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Assessment: Acquisition",
+            "icon": "🏆",
+            "body": "You have completed the hardware and installation pipeline. Let us verify your setup knowledge.",
+            "tip": "Remember storage optimizations."
+          },
+          {
+            "type": "quiz",
+            "q": "Why should you uncheck iOS and Android in the installation options if you are a PC developer?",
+            "opts": [
+              "To make the graphics better",
+              "To prevent the engine from crashing",
+              "To save massive amounts of hard drive space by omitting compilers you will never use",
+              "It makes the code run faster"
+            ],
+            "ans": 2,
+            "explain": "Compilers and binary files for distinct operating systems are heavy. Only install what you intend to deploy to."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "track": "Year 1: Software Architecture",
+    "title": "Module 2: Project Instantiation",
+    "emoji": "📁",
+    "color": "#00C8FF",
+    "desc": "Templates, Target Platforms, and C++ vs Blueprints",
+    "lessons": [
+      {
+        "id": "2-1",
+        "title": "1. The Project Browser",
+        "xp": 60,
+        "duration": "Sem 1, Wk 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Initialization",
+            "icon": "🚪",
+            "body": "Launch UE5. The Project Browser acts as the genesis point for your game architecture.\n\nOn the left, select **Games**. You are presented with a matrix of 'Templates'. A Template is not a full game; it is a pre-configured architecture containing a `GameMode`, a `PlayerController`, and a pre-rigged `Character` with inputs already mapped.",
+            "tip": "Never start with a 'Blank' project if you want a character that walks. You will spend 3 hours just building the camera and movement logic!"
+          }
+        ]
+      },
+      {
+        "id": "2-2",
+        "title": "2. The Third Person Template",
+        "xp": 60,
+        "duration": "Sem 1, Wk 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "The Industry Standard",
+            "icon": "🏃",
+            "body": "Select the **Third Person** template.\n\nWhy? Because it contains the most complex boilerplate code. It comes with an Animation Blueprint (AnimBP), a Spring Arm camera setup, and the highly optimized Character Movement Component (CMC). Dissecting this template is the fastest way to learn engine mechanics.",
+            "tip": "You can use the Third Person template for a First Person game! You just move the camera into the character's skull!"
+          },
+          {
+            "type": "quiz",
+            "q": "What is the primary benefit of using a Template instead of starting from a Blank project?",
+            "opts": [
+              "It gives you a completely finished game to sell",
+              "It provides pre-linked architectural classes (GameMode, Character, Inputs) saving hours of boilerplate setup",
+              "It downloads faster",
+              "It prevents viruses"
+            ],
+            "ans": 1,
+            "explain": "Boilerplate code (the basic skeletal code needed just to get a character walking) is tedious. Templates handle this immediately."
+          }
+        ]
+      },
+      {
+        "id": "2-3",
+        "title": "3. C++ vs Blueprint",
+        "xp": 80,
+        "duration": "Sem 1, Wk 4",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Language Selection",
+            "icon": "⚖️",
+            "body": "On the right side of the Project Browser, you must choose between **Blueprint** and **C++**.\n\n• **Blueprint:** Select this. It is a visual node-based Virtual Machine. It compiles instantly, is highly readable, and is used by AAA studios for 90% of gameplay logic.\n• **C++:** Requires Visual Studio. Used for intense mathematical background tasks, custom engine modifications, and networking backends.",
+            "tip": "Even if you select 'Blueprint' now, you can easily add C++ code classes to the project later!"
+          }
+        ]
+      },
+      {
+        "id": "2-4",
+        "title": "4. Project Defaults",
+        "xp": 70,
+        "duration": "Sem 1, Wk 4",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Scalability & Content",
+            "icon": "🛠️",
+            "body": "• **Target Platform:** Select Desktop. (Mobile optimizes the engine for touch controls and limits lighting).\n• **Quality Preset:** Maximum. You can scale it down later.\n• **Starter Content:** CHECK THIS BOX. It provides hundreds of free, optimized PBR materials, particle effects (sparks, fire), and primitive 3D models. It is essential for rapid prototyping.",
+            "tip": "Name your project using PascalCase (e.g., `MyAwesomeGame`). Spaces and special characters are illegal and will crash the compiler!"
+          },
+          {
+            "type": "quiz",
+            "q": "What does the 'Starter Content' checkbox inject into your new project?",
+            "opts": [
+              "The C++ source code",
+              "A folder containing high-quality primitive assets (materials, fire particles, sounds) for rapid greyboxing",
+              "A finished UI menu",
+              "A virus"
+            ],
+            "ans": 1,
+            "explain": "Without Starter Content, you would have to manually build basic materials (like solid blue or brick) from scratch to prototype."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "track": "Year 1: Software Architecture",
+    "title": "Module 3: Viewport & Transformation",
+    "emoji": "🎥",
+    "color": "#00C8FF",
+    "desc": "3D Space, Camera Matrices, and Manipulators",
+    "lessons": [
+      {
+        "id": "3-1",
+        "title": "1. The Cartesian Matrix",
+        "xp": 60,
+        "duration": "Sem 1, Month 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Left-Handed Z-Up",
+            "icon": "📐",
+            "body": "Before moving, understand the space. Unreal uses a Left-Handed, Z-Up coordinate system.\n\n• **X-Axis (Red):** Forward / Backward.\n• **Y-Axis (Green):** Right / Left.\n• **Z-Axis (Blue):** Up / Down.\n\n1 Unreal Unit (uu) is exactly 1 centimeter. If you move a cube 100 units on the Z-axis, it elevates exactly 1 meter.",
+            "tip": "A standard character is 192 units (1.92m) tall. Always build walls to be at least 300 units high!"
+          }
+        ]
+      },
+      {
+        "id": "3-2",
+        "title": "2. Viewport Flight",
+        "xp": 70,
+        "duration": "Sem 1, Month 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "RMB + WASD",
+            "icon": "✈️",
+            "body": "The Viewport is your window into the world.\n\n**Hold the Right Mouse Button (RMB).** Your mouse now dictates Pitch (up/down look) and Yaw (left/right turn). \n\nWhile holding RMB, use the **W, A, S, D** keys to fly your camera forward, left, backward, and right through the 3D space.",
+            "tip": "While flying, scroll your mouse wheel up or down to instantly change your flight speed! Useful for massive open worlds."
+          }
+        ]
+      },
+      {
+        "id": "3-3",
+        "title": "3. Vertical Camera Controls",
+        "xp": 70,
+        "duration": "Sem 1, Month 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Elevator Keys",
+            "icon": "🛗",
+            "body": "What if you need to go straight up without looking up?\n\nWhile holding RMB, press the **E** key to act as a vertical ascending elevator (moving strictly along the positive Z-axis). Press the **Q** key to descend. This keeps your camera angle perfectly level while changing height.",
+            "tip": "If you lose your mesh in the vast world, select it in the Outliner and press 'F' to instantly Focus the camera on it!"
+          },
+          {
+            "type": "quiz",
+            "q": "While holding the Right Mouse Button, which key combinations allow you to ascend and descend strictly on the Z-axis without changing your camera pitch?",
+            "opts": [
+              "W and S",
+              "Shift and Ctrl",
+              "E and Q",
+              "Up and Down Arrows"
+            ],
+            "ans": 2,
+            "explain": "E elevates the camera, Q lowers it, acting as a direct vertical lift."
+          }
+        ]
+      },
+      {
+        "id": "3-4",
+        "title": "4. Transform Manipulators",
+        "xp": 80,
+        "duration": "Sem 1, Month 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "The W, E, R Keys",
+            "icon": "✋",
+            "body": "Click on a cube in your level. \n\n• Press **W** to activate the **Translate (Move)** tool. Drag the Red (X), Green (Y), or Blue (Z) arrows.\n• Press **E** to activate the **Rotate** tool. Drag the colored arcs to spin the object.\n• Press **R** to activate the **Scale** tool. Drag the outer boxes to stretch it, or the center box to scale uniformly.",
+            "tip": "You can grab the space *between* two arrows on the Translate tool to move the object on two axes simultaneously while locking the third!"
+          }
+        ]
+      },
+      {
+        "id": "3-5",
+        "title": "5. Mathematical Snapping",
+        "xp": 80,
+        "duration": "Sem 1, Month 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "The Grid System",
+            "icon": "📏",
+            "body": "Look at the top right of your viewport. You will see grid icons with numbers (e.g., 10, 10°, 0.25).\n\nThis is the Snapping System. By default, moving an object snaps it to an invisible 10-centimeter grid. Rotating snaps by 10 degrees. \n\n*Why?* If you build walls that are exactly 400x300 units, and snap movement to 10 units, your walls will mathematically align perfectly with zero gaps or overlaps.",
+            "tip": "Press the 'End' key on your keyboard to instantly ray-trace downward and snap a floating object perfectly to the floor geometry!"
+          },
+          {
+            "type": "quiz",
+            "q": "Why does Unreal Engine enforce movement 'snapping' by default?",
+            "opts": [
+              "To limit how fast you can build",
+              "To ensure modular pieces mathematically align perfectly on a global grid, preventing visual gaps and collision errors",
+              "To save memory",
+              "To prevent objects from flying away"
+            ],
+            "ans": 1,
+            "explain": "Grid snapping is the foundation of level design. Without it, placing two walls perfectly next to each other by hand is mathematically impossible."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "track": "Year 1: Software Architecture",
+    "title": "Module 4: Asset Management",
+    "emoji": "🗂️",
+    "color": "#9D4EDD",
+    "desc": "The Content Browser, References, and Data Hierarchy",
+    "lessons": [
+      {
+        "id": "4-1",
+        "title": "1. The Content Browser",
+        "xp": 60,
+        "duration": "Sem 1, Month 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "The Project Root",
+            "icon": "📁",
+            "body": "The **Content Browser** (bottom of the screen) is your file system. It always starts at the `/Game/` root folder.\n\nEvery blueprint, 3D model, sound, and texture lives here. You can create folders by right-clicking. Organization is critical; a AAA game can have 200,000 files.",
+            "tip": "Press 'Ctrl + Spacebar' to quickly summon the Content Drawer anywhere in the editor without it permanently taking up screen space!"
+          }
+        ]
+      },
+      {
+        "id": "4-2",
+        "title": "2. The .UASSET Format",
+        "xp": 80,
+        "duration": "Sem 1, Month 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Engine Compilation",
+            "icon": "💾",
+            "body": "When you drag a `.png` image or `.fbx` 3D model from your desktop into the Content Browser, UE5 does not just copy the file. \n\nIt mathematically converts it into a highly compressed, engine-readable format called a **`.uasset`**.\n\nYou cannot open a `.uasset` file in Photoshop or Blender. It is an exclusively compiled package that only Unreal Engine can read.",
+            "tip": "If you need to edit an original PNG, right-click the texture in Unreal and select 'Asset Actions -> Export' to turn the uasset back into a raw image file!"
+          }
+        ]
+      },
+      {
+        "id": "4-3",
+        "title": "3. The Reference Chain",
+        "xp": 100,
+        "duration": "Sem 1, Month 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Hardcoded Pathways",
+            "icon": "🔗",
+            "body": "Assets are highly interdependent. A 3D model depends on a Material. The Material depends on a Texture.\n\nWhen you link these, Unreal writes a hardcoded filepath into the `.uasset`. For example, the Material looks explicitly in `/Game/Textures/MyTexture.uasset`.\n\n*The Danger:* If you open your computer's Windows File Explorer and move `MyTexture.uasset` to a new folder, the Material's hardcoded path breaks. Your 3D model will instantly turn a checkerboard grey, and your game will crash on compile.",
+            "tip": "Rule of Game Dev: NEVER move, rename, or delete files using Windows File Explorer. ALWAYS perform file operations INSIDE the UE5 Content Browser so the engine can update the reference paths autonomously!"
+          },
+          {
+            "type": "quiz",
+            "q": "Why must you absolutely never use Windows File Explorer to move or rename `.uasset` files inside your project directory?",
+            "opts": [
+              "Because Windows cannot read `.uasset` files",
+              "Because moving them externally breaks the hardcoded reference paths that other assets rely on, causing massive project corruption",
+              "Because it deletes the files entirely",
+              "Because it changes them to `.png`"
+            ],
+            "ans": 1,
+            "explain": "The engine tracks files via strict internal directory strings. External movements bypass the engine's tracking system, destroying the reference chain."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "track": "Year 1: Blueprint VM",
+    "title": "Module 5: Virtual Machine Basics",
+    "emoji": "🔷",
+    "color": "#FFB800",
+    "desc": "The execution stack, events, and pure/impure paradigms",
+    "lessons": [
+      {
+        "id": "5-1",
+        "title": "1. The Visual Syntax Tree",
+        "xp": 100,
+        "duration": "Sem 2, Wk 1",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Under the Hood",
+            "icon": "⚙️",
+            "body": "Blueprints are not just 'coding for beginners.' They are a visual interface for a highly optimized Virtual Machine (VM) running on top of Unreal's C++ core.\n\nWhen you connect nodes, you construct a Syntax Tree. When you click 'Compile', the engine translates this visual tree into C++ bytecode. During gameplay, the VM reads this bytecode and executes the native C++ functions.",
+            "tip": "Because Blueprints run inside a Virtual Machine, they are about 10x slower than raw C++. This is perfectly fine for game logic, but terrible for complex math loops!"
+          }
+        ]
+      },
+      {
+        "id": "5-2",
+        "title": "2. The Execution Wire",
+        "xp": 100,
+        "duration": "Sem 2, Wk 1",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "The White Line",
+            "icon": "⚡",
+            "body": "The most critical element in Blueprints is the **Execution Wire (The White Line)**.\n\nThe CPU processes logic linearly on a single thread. It follows the white wire from node to node, executing them sequentially.\n\nIf a node lacks a white execution input, it is ignored by the processor entirely. It is dead code.",
+            "tip": "During 'Play in Editor' (PIE), these white wires light up with glowing orange dots, allowing you to trace the exact path the CPU is taking in real-time!"
+          },
+          {
+            "type": "quiz",
+            "q": "If a node has perfectly valid mathematical data plugged into it, but is completely disconnected from the white execution wire, what happens?",
+            "opts": [
+              "It runs on Event Tick automatically",
+              "The Virtual Machine ignores it entirely",
+              "It crashes the engine",
+              "It runs first"
+            ],
+            "ans": 1,
+            "explain": "The VM strictly follows the execution path. Without the white wire passing through it, a command node will never be processed."
+          }
+        ]
+      },
+      {
+        "id": "5-3",
+        "title": "3. Impure Nodes",
+        "xp": 100,
+        "duration": "Sem 2, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "State Modifiers",
+            "icon": "🛑",
+            "body": "An **Impure Node** is any node that features White Execution Pins.\n\nImpure nodes actually 'do' something. They modify the state of the game, move an object, play a sound, or overwrite a variable in memory.\n\nThey only execute *exactly once* when the execution wire strikes them.",
+            "tip": "Examples: 'Print String', 'Set Actor Location', 'Destroy Actor'."
+          }
+        ]
+      },
+      {
+        "id": "5-4",
+        "title": "4. Pure Nodes",
+        "xp": 120,
+        "duration": "Sem 2, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Data Fetchers",
+            "icon": "🟢",
+            "body": "A **Pure Node** lacks execution pins. They are typically green or blue and return data (e.g., Math equations, Get Variable).\n\n*The Danger:* A Pure Node executes *every single time* an Impure node asks for its data.\n\nIf you have a complex mathematical calculation in a Pure node, and you plug its output into 5 different Impure nodes, the CPU recalculates that math 5 separate times!",
+            "tip": "If a calculation is heavy, calculate it ONCE in an Impure node, save the result to a variable, and pass that variable around to save CPU cycles!"
+          },
+          {
+            "type": "quiz",
+            "q": "If a complex Pure (Green) math node is connected to four different Impure (Execution) nodes, how many times does the CPU calculate that math?",
+            "opts": [
+              "1 time",
+              "4 times",
+              "0 times",
+              "Infinitely"
+            ],
+            "ans": 1,
+            "explain": "Pure nodes recalculate their outputs every single time their data is requested by an executing Impure node. This can cause severe performance drops if abused."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "track": "Year 1: Blueprint VM",
+    "title": "Module 6: Data Allocation & Types",
+    "emoji": "🗃️",
+    "color": "#00E5A0",
+    "desc": "Memory constraints, Booleans, Integers, and Vectors",
+    "lessons": [
+      {
+        "id": "6-1",
+        "title": "1. Strong Typing",
+        "xp": 80,
+        "duration": "Sem 2, Wk 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Memory Pointers",
+            "icon": "💾",
+            "body": "In computer science, a Variable is an allocated block of memory reserved to store data. UE5 uses **Strong Typing**. You cannot plug a text word into a math equation. Data types are explicitly color-coded in Blueprints to prevent memory corruption.",
+            "tip": "To create a variable, click the '+' icon in the 'Variables' section of the My Blueprint panel on the far left!"
+          }
+        ]
+      },
+      {
+        "id": "6-2",
+        "title": "2. Booleans (Red)",
+        "xp": 90,
+        "duration": "Sem 2, Wk 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Binary Logic",
+            "icon": "🔴",
+            "body": "The **Boolean** is the smallest data type (1 bit of memory).\n\nIt stores binary states: **True** (1) or **False** (0).\n\nBooleans are the foundation of all game logic. `IsPlayerDead`, `HasKey`, `IsReloading`. We use these True/False states to direct the execution flow using Branch (If/Else) nodes.",
+            "tip": "Name your booleans as questions (e.g., 'bIsJumping') so the logic reads like plain English!"
+          }
+        ]
+      },
+      {
+        "id": "6-3",
+        "title": "3. Integers (Cyan)",
+        "xp": 100,
+        "duration": "Sem 2, Wk 4",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Whole Numbers",
+            "icon": "🔵",
+            "body": "An **Integer** is a 32-bit whole number with absolutely no decimal places (e.g., 1, 5, 42, -10).\n\nIntegers are perfectly precise. We use them for counting discrete items where a fraction makes no sense. You cannot have 1.5 bullets in a magazine, or 2.3 lives remaining.\n\nIf you divide an Integer (5 / 2), the result is 2. The engine throws away the remainder because Integers mathematically cannot hold fractions.",
+            "tip": "Use Integers for Array Indexes, Ammo Counts, and Lives."
+          }
+        ]
+      },
+      {
+        "id": "6-4",
+        "title": "4. Floats (Green)",
+        "xp": 120,
+        "duration": "Sem 2, Wk 4",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Floating-Point Precision",
+            "icon": "🟢",
+            "body": "A **Float** is a single-precision floating-point number (e.g., 1.0, 3.14159, -0.5).\n\nFloats are required for continuous, granular data: Physics distances, Health Percentages, and Timers.\n\n*The Architecture Flaw:* Floats are subject to microscopic decimal drift. Because computers calculate in binary, a float value of `5.0` might technically be stored in RAM as `4.999999`.",
+            "tip": "Because of decimal drift, NEVER use the 'Equals (==)' node on two Floats. Always use 'Nearly Equal' to account for microscopic errors!"
+          },
+          {
+            "type": "quiz",
+            "q": "Why is it dangerous to use a Float (Green) variable to count discrete items like 'Keys Collected'?",
+            "opts": [
+              "Floats cannot be added together",
+              "Floats are subject to microscopic mathematical imprecision (e.g., 0.9999) making exact Equality checks fail",
+              "Floats take up too much RAM",
+              "Floats are only for UI"
+            ],
+            "ans": 1,
+            "explain": "If you check 'If Keys == 3.0', it might fail if the float evaluates to 2.999999. Integers guarantee exact wholeness."
+          }
+        ]
+      },
+      {
+        "id": "6-5",
+        "title": "5. Vectors (Yellow)",
+        "xp": 150,
+        "duration": "Sem 2, Month 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Spatial Structs",
+            "icon": "🟡",
+            "body": "A **Vector** is not a base data type; it is a `Struct` (a package) containing exactly three Floats: **X, Y, and Z**.\n\nVectors consume 3x the memory of a Float. They are fundamentally required for calculating 3D spatial coordinates (Location), scaling sizes, and determining mathematical velocity trajectories.",
+            "tip": "You can right-click a Vector pin on any node and select 'Split Struct Pin' to expose the raw X, Y, and Z float values!"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "track": "Year 2: AAA Logic Engineering",
+    "title": "Module 7: The Physics of Flappy Bird",
+    "emoji": "🐦",
+    "color": "#FF4060",
+    "desc": "Impulses, Gravity, and Rigid Body Mathematics",
+    "lessons": [
+      {
+        "id": "7-1",
+        "title": "1. The Blank Architecture",
+        "xp": 100,
+        "duration": "Sem 3, Wk 1",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Zero Boilerplate",
+            "icon": "📁",
+            "body": "We build from scratch using the **Blank** template.\n\nCreate a new project. Name it `FlappyClone`. \nWe do this because using a Character template provides pre-written walking code. We must learn to interface directly with the raw physics engine.",
+            "tip": "Ensure 'Starter Content' is checked so we have access to a simple sphere mesh."
+          }
+        ]
+      },
+      {
+        "id": "7-2",
+        "title": "2. The Pawn Avatar",
+        "xp": 100,
+        "duration": "Sem 3, Wk 1",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Actor Possession",
+            "icon": "🥚",
+            "body": "Right-click the Content Browser -> Blueprint Class -> Select **Pawn**. Name it `BP_Bird`.\n\nA Pawn is an Actor that can be 'possessed' by a Player Controller. Open `BP_Bird`. \nAdd a `Static Mesh Component` (a Sphere). This acts as the physical representation of the bird.",
+            "tip": "A 'Character' class is a subclass of Pawn that includes walking code. For a flying bird, a basic Pawn is mathematically cleaner."
+          }
+        ]
+      },
+      {
+        "id": "7-3",
+        "title": "3. The Chaos Physics Interface",
+        "xp": 150,
+        "duration": "Sem 3, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Yielding Control",
+            "icon": "🍎",
+            "body": "Select the Static Mesh in `BP_Bird`. In the Details panel, check **Simulate Physics**.\n\n*The Paradigm Shift:* The moment you check this, you surrender transform control to the Chaos Physics Engine thread. It instantly calculates $9.8 m/s^2$ gravity and applies mass. You must no longer use 'Set Actor Location' to move this object, or you will cause violent collision tunneling.",
+            "tip": "In the Physics constraints, check 'Lock Position Y', 'Lock Rotation X', and 'Lock Rotation Y'. This forces the 3D physics engine to operate strictly on a 2D plane!"
+          }
+        ]
+      },
+      {
+        "id": "7-4",
+        "title": "4. Force vs Impulse",
+        "xp": 150,
+        "duration": "Sem 3, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Kinetic Manipulation",
+            "icon": "🚀",
+            "body": "Open the Event Graph. Add a 'Spacebar' event. Drag off and add the **Add Impulse** node. Plug the Mesh into Target.\n\n• **Force:** Calculated over time ($F=ma$). Used for thrusters or sustained wind.\n• **Impulse:** An instantaneous change in linear velocity vector. Perfect for explosions or jumps.\n\nSet the Z impulse to 800. Check the **Vel Change** boolean. This forces the engine to bypass mass calculations, guaranteeing an identical jump height regardless of the mesh size.",
+            "tip": "If you leave 'Vel Change' unchecked, an impulse of 800 might barely move a large sphere because the physics engine calculates its heavy mass!"
+          },
+          {
+            "type": "quiz",
+            "q": "When adding an Impulse to make the bird flap, what does checking the 'Vel Change' boolean do?",
+            "opts": [
+              "It makes the jump happen over 5 seconds",
+              "It ignores the object's physical mass, applying the exact mathematical velocity instantly",
+              "It reverses gravity",
+              "It deletes the object"
+            ],
+            "ans": 1,
+            "explain": "Velocity Change alters the momentum vector directly ($v = v + impulse$). Without it, the engine calculates force over mass ($F=ma$)."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "track": "Year 2: AAA Logic Engineering",
+    "title": "Module 8: Infinite Spawning & Memory",
+    "emoji": "♻️",
+    "color": "#FFB800",
+    "desc": "Timers, Garbage Collection, and Procedural Instantiation",
+    "lessons": [
+      {
+        "id": "8-1",
+        "title": "1. The Pipe Obstacle",
+        "xp": 100,
+        "duration": "Sem 3, Wk 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Kinematic Walls",
+            "icon": "🧱",
+            "body": "Create an Actor `BP_Pipe`. Add two tall cubes (Top and Bottom) with a gap.\n\nDo NOT check Simulate Physics. We want these to be infinitely dense, immovable walls. \nIn `BP_Pipe` Event Graph, locate **Event Tick**. Drag off and use **Add Actor Local Offset**. Set X to `-5.0`.\n\nBecause Tick fires every frame, the pipe continually mathematically subtracts from its X coordinate, sliding left toward the player.",
+            "tip": "Frame dependence warning: Later we must multiply this by Delta Time, otherwise 120fps players face pipes moving twice as fast!"
+          }
+        ]
+      },
+      {
+        "id": "8-2",
+        "title": "2. The Spawner Manager",
+        "xp": 120,
+        "duration": "Sem 3, Wk 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Looping Instantiation",
+            "icon": "✨",
+            "body": "Create `BP_Spawner` and place it off-screen right. \n\nOn BeginPlay, use **Set Timer by Event** (Time: 2.5, Looping: True).\nConnect a Custom Event `SpawnPipes`. Use **Spawn Actor From Class** (`BP_Pipe`).\n\nTo vary the height, split the Spawn Transform pin. Plug the Spawner's X/Y location in, but use a **Random Float in Range** node for the Z-axis.",
+            "tip": "Timers run highly optimized background clocks, unlike standard 'Delay' nodes which stall execution."
+          }
+        ]
+      },
+      {
+        "id": "8-3",
+        "title": "3. Garbage Collection",
+        "xp": 150,
+        "duration": "Sem 3, Wk 4",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Preventing Memory Leaks",
+            "icon": "🗑️",
+            "body": "*Crucial:* If pipes spawn infinitely, your RAM will eventually hit 100% and crash.\n\nOpen `BP_Pipe`. In its Details panel, find **Initial Life Span**. Set it to `10.0`.\n\nThis commands the engine: 'After exactly 10 seconds, execute the Destroy Actor function, sever physics calculations, and flush this pointer from memory.'",
+            "tip": "Advanced AAA games use 'Object Pooling' instead of destruction to save CPU overhead!"
+          },
+          {
+            "type": "quiz",
+            "q": "Why is setting the 'Initial Life Span' mandatory for dynamically spawned obstacles?",
+            "opts": [
+              "To make them move faster",
+              "To prevent a Memory Leak that will eventually exhaust system RAM and crash the game",
+              "To add them to the player's score",
+              "To trigger the game over screen"
+            ],
+            "ans": 1,
+            "explain": "Every spawned actor consumes RAM. If you spawn infinite objects without destroying the old ones, the engine crashes."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "track": "Year 3: Network Engineering",
+    "title": "Module 9: The Client-Server Paradigm",
+    "emoji": "🌐",
+    "color": "#9D4EDD",
+    "desc": "Authority, Replication, and Remote Procedure Calls",
+    "lessons": [
+      {
+        "id": "9-1",
+        "title": "1. The Dedicated Server Model",
+        "xp": 150,
+        "duration": "Sem 5, Wk 1",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "The Untrusted Client",
+            "icon": "🖥️",
+            "body": "Unreal Engine enforces a strict **Dedicated Server Architecture**.\n\nThe Server is the ultimate authority. The Clients (players) are blind terminals submitting requests.\nIf a Client calculates its own health, a hacker can lock that memory address to 100 and become invincible.\n\nTherefore, we use the **Has Authority** Switch node. Only the Authority (Server) is legally permitted to subtract health, calculate damage, and spawn critical items.",
+            "tip": "Rule #1 of Multiplayer: The Client is always a liar. Never trust Client math."
+          }
+        ]
+      },
+      {
+        "id": "9-2",
+        "title": "2. Network Roles",
+        "xp": 120,
+        "duration": "Sem 5, Wk 1",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Proxies and Possession",
+            "icon": "🎭",
+            "body": "An Actor has distinct network roles across different machines:\n\n1. **Authority:** The Server's absolute master copy.\n2. **Autonomous Proxy:** The Character *you* control on your screen. You have input permissions here.\n3. **Simulated Proxy:** Every other player on your screen. You cannot control them; your machine just visually simulates the coordinates sent down from the Server.",
+            "tip": "Player Controllers only exist on the Server and the specific owning Client's machine. They do not exist on other players' machines!"
+          }
+        ]
+      },
+      {
+        "id": "9-3",
+        "title": "3. Remote Procedure Calls (RPCs)",
+        "xp": 200,
+        "duration": "Sem 5, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Bridging the Network",
+            "icon": "📞",
+            "body": "How does a Client ask the Server to shoot a gun? Using an **RPC**.\n\n1. The Client presses Mouse 1.\n2. This triggers a Custom Event set to **Run on Server**.\n3. The Server receives the signal, verifies the player actually has ammo, and fires the bullet mathematically.\n4. If the Server needs to show an explosion, it fires a Custom Event set to **Multicast**, commanding all connected clients to render a particle effect.",
+            "tip": "Do not use Multicast for state changes (like opening a door), only use it for transient visuals!"
+          },
+          {
+            "type": "quiz",
+            "q": "A player presses 'Reload'. Which networking flow is mathematically secure?",
+            "opts": [
+              "The Client resets its ammo variable, then tells the Server",
+              "The Client calls a 'Run on Server' RPC. The Server verifies the ammo pool, updates the replicated ammo variable, and syncs it back to the Client.",
+              "A Multicast is sent to all players",
+              "The GameState updates locally"
+            ],
+            "ans": 1,
+            "explain": "The Client must request the action via an RPC. The Server validates the action, modifies the master state, and Replication handles the rest."
+          }
+        ]
+      }
+    ]
+  }
+]
