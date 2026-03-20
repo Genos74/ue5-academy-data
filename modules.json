@@ -1,1337 +1,694 @@
 [
   {
-    "id": 1,
-    "track": "Year 1: Software Architecture",
-    "title": "Module 1: Engine Acquisition",
-    "emoji": "🚀",
-    "color": "#00C8FF",
-    "desc": "Hardware constraints, Launchers, and Installation",
-    "lessons": [
-      {
-        "id": "1-1",
-        "title": "1. The Hardware Pipeline",
-        "xp": 50,
-        "duration": "Sem 1, Wk 1",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Silicon Realities",
-            "icon": "💻",
-            "body": "Unreal Engine 5 is not a simple program; it is a real-time rendering powerhouse used for Hollywood films and AAA games. \n\nBefore downloading, you must understand hardware constraints. UE5 streams high-fidelity data (Nanite geometry and 8K textures) directly from your storage drive to your GPU. If you install UE5 on a mechanical Hard Disk Drive (HDD), the read-head physically cannot spin fast enough to load the data. The editor will freeze for minutes at a time.",
-            "tip": "Rule #1: You MUST install Unreal Engine on a Solid State Drive (SATA SSD or NVMe M.2)."
-          },
-          {
-            "type": "quiz",
-            "q": "What component is most likely to cause severe editor freezing if it is not fast enough to stream UE5 asset data?",
-            "opts": [
-              "The CPU Cache",
-              "A Mechanical Hard Drive (HDD)",
-              "The System RAM",
-              "The Motherboard"
-            ],
-            "ans": 1,
-            "explain": "Mechanical drives max out at ~150 MB/s, whereas NVMe SSDs can reach 7,000+ MB/s, eliminating asset streaming bottlenecks."
-          }
-        ]
-      },
-      {
-        "id": "1-2",
-        "title": "2. Epic Games Launcher",
-        "xp": 50,
-        "duration": "Sem 1, Wk 1",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "The Hub",
-            "icon": "📥",
-            "body": "Epic Games does not provide direct executable downloads for UE5. You must install the **Epic Games Launcher**.\n\nOnce installed, navigate to the **Unreal Engine** tab on the left sidebar. This isolated environment contains the Engine library, the community marketplace, and your local project vault.",
-            "tip": "Create a dedicated Epic Games account strictly for your development work to keep your purchased game assets separate from your personal gaming library."
-          }
-        ]
-      },
-      {
-        "id": "1-3",
-        "title": "3. Version Management",
-        "xp": 50,
-        "duration": "Sem 1, Wk 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "The Library Tab",
-            "icon": "📚",
-            "body": "In the Unreal Engine section, click the **Library** tab at the top. \n\nClick the yellow '+' icon next to 'Engine Versions'. UE5 frequently updates (e.g., 5.1, 5.2, 5.3). \n\n*Crucial Engineering Concept:* Upgrading a project to a newer engine version is permanent. You cannot downgrade a project from 5.3 back to 5.2 without corrupting the files.",
-            "tip": "Always 'Clone' your project before upgrading to a new engine version!"
-          },
-          {
-            "type": "quiz",
-            "q": "If you upgrade a project from Unreal Engine 5.1 to 5.3, can you later open it in 5.1 if you find a bug?",
-            "opts": [
-              "Yes, it is backward compatible",
-              "No, upgrading project files alters their deep structure, making them permanently incompatible with older versions",
-              "Yes, but only if you delete the code",
-              "Yes, using a plugin"
-            ],
-            "ans": 1,
-            "explain": "Forward compatibility is supported. Backward compatibility is mathematically impossible due to new engine code structures."
-          }
-        ]
-      },
-      {
-        "id": "1-4",
-        "title": "4. Storage Optimization",
-        "xp": 60,
-        "duration": "Sem 1, Wk 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Target Platforms",
-            "icon": "⚙️",
-            "body": "Before clicking 'Install', you must click **Options** on the engine version. \n\nBy default, UE5 installs compilers for Windows, Android, iOS, and Linux. This takes over 100GB of space. If you are only making PC games, uncheck Android, iOS, and Linux to instantly save 30-40GB of storage.",
-            "tip": "You can always add these compilers later if you decide to port your game to a mobile device!"
-          }
-        ]
-      },
-      {
-        "id": "1-5",
-        "title": "5. Module 1 Mega Quiz",
-        "xp": 150,
-        "duration": "Sem 1, Wk 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Assessment: Acquisition",
-            "icon": "🏆",
-            "body": "You have completed the hardware and installation pipeline. Let us verify your setup knowledge.",
-            "tip": "Remember storage optimizations."
-          },
-          {
-            "type": "quiz",
-            "q": "Why should you uncheck iOS and Android in the installation options if you are a PC developer?",
-            "opts": [
-              "To make the graphics better",
-              "To prevent the engine from crashing",
-              "To save massive amounts of hard drive space by omitting compilers you will never use",
-              "It makes the code run faster"
-            ],
-            "ans": 2,
-            "explain": "Compilers and binary files for distinct operating systems are heavy. Only install what you intend to deploy to."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "track": "Year 1: Software Architecture",
-    "title": "Module 2: Project Instantiation",
-    "emoji": "📁",
-    "color": "#00C8FF",
-    "desc": "Templates, Target Platforms, and C++ vs Blueprints",
-    "lessons": [
-      {
-        "id": "2-1",
-        "title": "1. The Project Browser",
-        "xp": 60,
-        "duration": "Sem 1, Wk 3",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Initialization",
-            "icon": "🚪",
-            "body": "Launch UE5. The Project Browser acts as the genesis point for your game architecture.\n\nOn the left, select **Games**. You are presented with a matrix of 'Templates'. A Template is not a full game; it is a pre-configured architecture containing a `GameMode`, a `PlayerController`, and a pre-rigged `Character` with inputs already mapped.",
-            "tip": "Never start with a 'Blank' project if you want a character that walks. You will spend 3 hours just building the camera and movement logic!"
-          }
-        ]
-      },
-      {
-        "id": "2-2",
-        "title": "2. The Third Person Template",
-        "xp": 60,
-        "duration": "Sem 1, Wk 3",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "The Industry Standard",
-            "icon": "🏃",
-            "body": "Select the **Third Person** template.\n\nWhy? Because it contains the most complex boilerplate code. It comes with an Animation Blueprint (AnimBP), a Spring Arm camera setup, and the highly optimized Character Movement Component (CMC). Dissecting this template is the fastest way to learn engine mechanics.",
-            "tip": "You can use the Third Person template for a First Person game! You just move the camera into the character's skull!"
-          },
-          {
-            "type": "quiz",
-            "q": "What is the primary benefit of using a Template instead of starting from a Blank project?",
-            "opts": [
-              "It gives you a completely finished game to sell",
-              "It provides pre-linked architectural classes (GameMode, Character, Inputs) saving hours of boilerplate setup",
-              "It downloads faster",
-              "It prevents viruses"
-            ],
-            "ans": 1,
-            "explain": "Boilerplate code (the basic skeletal code needed just to get a character walking) is tedious. Templates handle this immediately."
-          }
-        ]
-      },
-      {
-        "id": "2-3",
-        "title": "3. C++ vs Blueprint",
-        "xp": 80,
-        "duration": "Sem 1, Wk 4",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Language Selection",
-            "icon": "⚖️",
-            "body": "On the right side of the Project Browser, you must choose between **Blueprint** and **C++**.\n\n• **Blueprint:** Select this. It is a visual node-based Virtual Machine. It compiles instantly, is highly readable, and is used by AAA studios for 90% of gameplay logic.\n• **C++:** Requires Visual Studio. Used for intense mathematical background tasks, custom engine modifications, and networking backends.",
-            "tip": "Even if you select 'Blueprint' now, you can easily add C++ code classes to the project later!"
-          }
-        ]
-      },
-      {
-        "id": "2-4",
-        "title": "4. Project Defaults",
-        "xp": 70,
-        "duration": "Sem 1, Wk 4",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Scalability & Content",
-            "icon": "🛠️",
-            "body": "• **Target Platform:** Select Desktop. (Mobile optimizes the engine for touch controls and limits lighting).\n• **Quality Preset:** Maximum. You can scale it down later.\n• **Starter Content:** CHECK THIS BOX. It provides hundreds of free, optimized PBR materials, particle effects (sparks, fire), and primitive 3D models. It is essential for rapid prototyping.",
-            "tip": "Name your project using PascalCase (e.g., `MyAwesomeGame`). Spaces and special characters are illegal and will crash the compiler!"
-          },
-          {
-            "type": "quiz",
-            "q": "What does the 'Starter Content' checkbox inject into your new project?",
-            "opts": [
-              "The C++ source code",
-              "A folder containing high-quality primitive assets (materials, fire particles, sounds) for rapid greyboxing",
-              "A finished UI menu",
-              "A virus"
-            ],
-            "ans": 1,
-            "explain": "Without Starter Content, you would have to manually build basic materials (like solid blue or brick) from scratch to prototype."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "track": "Year 1: Software Architecture",
-    "title": "Module 3: Viewport & Transformation",
-    "emoji": "🎥",
-    "color": "#00C8FF",
-    "desc": "3D Space, Camera Matrices, and Manipulators",
-    "lessons": [
-      {
-        "id": "3-1",
-        "title": "1. The Cartesian Matrix",
-        "xp": 60,
-        "duration": "Sem 1, Month 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Left-Handed Z-Up",
-            "icon": "📐",
-            "body": "Before moving, understand the space. Unreal uses a Left-Handed, Z-Up coordinate system.\n\n• **X-Axis (Red):** Forward / Backward.\n• **Y-Axis (Green):** Right / Left.\n• **Z-Axis (Blue):** Up / Down.\n\n1 Unreal Unit (uu) is exactly 1 centimeter. If you move a cube 100 units on the Z-axis, it elevates exactly 1 meter.",
-            "tip": "A standard character is 192 units (1.92m) tall. Always build walls to be at least 300 units high!"
-          }
-        ]
-      },
-      {
-        "id": "3-2",
-        "title": "2. Viewport Flight",
-        "xp": 70,
-        "duration": "Sem 1, Month 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "RMB + WASD",
-            "icon": "✈️",
-            "body": "The Viewport is your window into the world.\n\n**Hold the Right Mouse Button (RMB).** Your mouse now dictates Pitch (up/down look) and Yaw (left/right turn). \n\nWhile holding RMB, use the **W, A, S, D** keys to fly your camera forward, left, backward, and right through the 3D space.",
-            "tip": "While flying, scroll your mouse wheel up or down to instantly change your flight speed! Useful for massive open worlds."
-          }
-        ]
-      },
-      {
-        "id": "3-3",
-        "title": "3. Vertical Camera Controls",
-        "xp": 70,
-        "duration": "Sem 1, Month 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Elevator Keys",
-            "icon": "🛗",
-            "body": "What if you need to go straight up without looking up?\n\nWhile holding RMB, press the **E** key to act as a vertical ascending elevator (moving strictly along the positive Z-axis). Press the **Q** key to descend. This keeps your camera angle perfectly level while changing height.",
-            "tip": "If you lose your mesh in the vast world, select it in the Outliner and press 'F' to instantly Focus the camera on it!"
-          },
-          {
-            "type": "quiz",
-            "q": "While holding the Right Mouse Button, which key combinations allow you to ascend and descend strictly on the Z-axis without changing your camera pitch?",
-            "opts": [
-              "W and S",
-              "Shift and Ctrl",
-              "E and Q",
-              "Up and Down Arrows"
-            ],
-            "ans": 2,
-            "explain": "E elevates the camera, Q lowers it, acting as a direct vertical lift."
-          }
-        ]
-      },
-      {
-        "id": "3-4",
-        "title": "4. Transform Manipulators",
-        "xp": 80,
-        "duration": "Sem 1, Month 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "The W, E, R Keys",
-            "icon": "✋",
-            "body": "Click on a cube in your level. \n\n• Press **W** to activate the **Translate (Move)** tool. Drag the Red (X), Green (Y), or Blue (Z) arrows.\n• Press **E** to activate the **Rotate** tool. Drag the colored arcs to spin the object.\n• Press **R** to activate the **Scale** tool. Drag the outer boxes to stretch it, or the center box to scale uniformly.",
-            "tip": "You can grab the space *between* two arrows on the Translate tool to move the object on two axes simultaneously while locking the third!"
-          }
-        ]
-      },
-      {
-        "id": "3-5",
-        "title": "5. Mathematical Snapping",
-        "xp": 80,
-        "duration": "Sem 1, Month 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "The Grid System",
-            "icon": "📏",
-            "body": "Look at the top right of your viewport. You will see grid icons with numbers (e.g., 10, 10°, 0.25).\n\nThis is the Snapping System. By default, moving an object snaps it to an invisible 10-centimeter grid. Rotating snaps by 10 degrees. \n\n*Why?* If you build walls that are exactly 400x300 units, and snap movement to 10 units, your walls will mathematically align perfectly with zero gaps or overlaps.",
-            "tip": "Press the 'End' key on your keyboard to instantly ray-trace downward and snap a floating object perfectly to the floor geometry!"
-          },
-          {
-            "type": "quiz",
-            "q": "Why does Unreal Engine enforce movement 'snapping' by default?",
-            "opts": [
-              "To limit how fast you can build",
-              "To ensure modular pieces mathematically align perfectly on a global grid, preventing visual gaps and collision errors",
-              "To save memory",
-              "To prevent objects from flying away"
-            ],
-            "ans": 1,
-            "explain": "Grid snapping is the foundation of level design. Without it, placing two walls perfectly next to each other by hand is mathematically impossible."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "track": "Year 1: Software Architecture",
-    "title": "Module 4: Asset Management",
-    "emoji": "🗂️",
-    "color": "#9D4EDD",
-    "desc": "The Content Browser, References, and Data Hierarchy",
-    "lessons": [
-      {
-        "id": "4-1",
-        "title": "1. The Content Browser",
-        "xp": 60,
-        "duration": "Sem 1, Month 3",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "The Project Root",
-            "icon": "📁",
-            "body": "The **Content Browser** (bottom of the screen) is your file system. It always starts at the `/Game/` root folder.\n\nEvery blueprint, 3D model, sound, and texture lives here. You can create folders by right-clicking. Organization is critical; a AAA game can have 200,000 files.",
-            "tip": "Press 'Ctrl + Spacebar' to quickly summon the Content Drawer anywhere in the editor without it permanently taking up screen space!"
-          }
-        ]
-      },
-      {
-        "id": "4-2",
-        "title": "2. The .UASSET Format",
-        "xp": 80,
-        "duration": "Sem 1, Month 3",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Engine Compilation",
-            "icon": "💾",
-            "body": "When you drag a `.png` image or `.fbx` 3D model from your desktop into the Content Browser, UE5 does not just copy the file. \n\nIt mathematically converts it into a highly compressed, engine-readable format called a **`.uasset`**.\n\nYou cannot open a `.uasset` file in Photoshop or Blender. It is an exclusively compiled package that only Unreal Engine can read.",
-            "tip": "If you need to edit an original PNG, right-click the texture in Unreal and select 'Asset Actions -> Export' to turn the uasset back into a raw image file!"
-          }
-        ]
-      },
-      {
-        "id": "4-3",
-        "title": "3. The Reference Chain",
-        "xp": 100,
-        "duration": "Sem 1, Month 3",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Hardcoded Pathways",
-            "icon": "🔗",
-            "body": "Assets are highly interdependent. A 3D model depends on a Material. The Material depends on a Texture.\n\nWhen you link these, Unreal writes a hardcoded filepath into the `.uasset`. For example, the Material looks explicitly in `/Game/Textures/MyTexture.uasset`.\n\n*The Danger:* If you open your computer's Windows File Explorer and move `MyTexture.uasset` to a new folder, the Material's hardcoded path breaks. Your 3D model will instantly turn a checkerboard grey, and your game will crash on compile.",
-            "tip": "Rule of Game Dev: NEVER move, rename, or delete files using Windows File Explorer. ALWAYS perform file operations INSIDE the UE5 Content Browser so the engine can update the reference paths autonomously!"
-          },
-          {
-            "type": "quiz",
-            "q": "Why must you absolutely never use Windows File Explorer to move or rename `.uasset` files inside your project directory?",
-            "opts": [
-              "Because Windows cannot read `.uasset` files",
-              "Because moving them externally breaks the hardcoded reference paths that other assets rely on, causing massive project corruption",
-              "Because it deletes the files entirely",
-              "Because it changes them to `.png`"
-            ],
-            "ans": 1,
-            "explain": "The engine tracks files via strict internal directory strings. External movements bypass the engine's tracking system, destroying the reference chain."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "track": "Year 1: Blueprint VM",
-    "title": "Module 5: Virtual Machine Basics",
-    "emoji": "🔷",
-    "color": "#FFB800",
-    "desc": "The execution stack, events, and pure/impure paradigms",
-    "lessons": [
-      {
-        "id": "5-1",
-        "title": "1. The Visual Syntax Tree",
-        "xp": 100,
-        "duration": "Sem 2, Wk 1",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Under the Hood",
-            "icon": "⚙️",
-            "body": "Blueprints are not just 'coding for beginners.' They are a visual interface for a highly optimized Virtual Machine (VM) running on top of Unreal's C++ core.\n\nWhen you connect nodes, you construct a Syntax Tree. When you click 'Compile', the engine translates this visual tree into C++ bytecode. During gameplay, the VM reads this bytecode and executes the native C++ functions.",
-            "tip": "Because Blueprints run inside a Virtual Machine, they are about 10x slower than raw C++. This is perfectly fine for game logic, but terrible for complex math loops!"
-          }
-        ]
-      },
-      {
-        "id": "5-2",
-        "title": "2. The Execution Wire",
-        "xp": 100,
-        "duration": "Sem 2, Wk 1",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "The White Line",
-            "icon": "⚡",
-            "body": "The most critical element in Blueprints is the **Execution Wire (The White Line)**.\n\nThe CPU processes logic linearly on a single thread. It follows the white wire from node to node, executing them sequentially.\n\nIf a node lacks a white execution input, it is ignored by the processor entirely. It is dead code.",
-            "tip": "During 'Play in Editor' (PIE), these white wires light up with glowing orange dots, allowing you to trace the exact path the CPU is taking in real-time!"
-          },
-          {
-            "type": "quiz",
-            "q": "If a node has perfectly valid mathematical data plugged into it, but is completely disconnected from the white execution wire, what happens?",
-            "opts": [
-              "It runs on Event Tick automatically",
-              "The Virtual Machine ignores it entirely",
-              "It crashes the engine",
-              "It runs first"
-            ],
-            "ans": 1,
-            "explain": "The VM strictly follows the execution path. Without the white wire passing through it, a command node will never be processed."
-          }
-        ]
-      },
-      {
-        "id": "5-3",
-        "title": "3. Impure Nodes",
-        "xp": 100,
-        "duration": "Sem 2, Wk 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "State Modifiers",
-            "icon": "🛑",
-            "body": "An **Impure Node** is any node that features White Execution Pins.\n\nImpure nodes actually 'do' something. They modify the state of the game, move an object, play a sound, or overwrite a variable in memory.\n\nThey only execute *exactly once* when the execution wire strikes them.",
-            "tip": "Examples: 'Print String', 'Set Actor Location', 'Destroy Actor'."
-          }
-        ]
-      },
-      {
-        "id": "5-4",
-        "title": "4. Pure Nodes",
-        "xp": 120,
-        "duration": "Sem 2, Wk 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Data Fetchers",
-            "icon": "🟢",
-            "body": "A **Pure Node** lacks execution pins. They are typically green or blue and return data (e.g., Math equations, Get Variable).\n\n*The Danger:* A Pure Node executes *every single time* an Impure node asks for its data.\n\nIf you have a complex mathematical calculation in a Pure node, and you plug its output into 5 different Impure nodes, the CPU recalculates that math 5 separate times!",
-            "tip": "If a calculation is heavy, calculate it ONCE in an Impure node, save the result to a variable, and pass that variable around to save CPU cycles!"
-          },
-          {
-            "type": "quiz",
-            "q": "If a complex Pure (Green) math node is connected to four different Impure (Execution) nodes, how many times does the CPU calculate that math?",
-            "opts": [
-              "1 time",
-              "4 times",
-              "0 times",
-              "Infinitely"
-            ],
-            "ans": 1,
-            "explain": "Pure nodes recalculate their outputs every single time their data is requested by an executing Impure node. This can cause severe performance drops if abused."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "track": "Year 1: Blueprint VM",
-    "title": "Module 6: Data Allocation & Types",
-    "emoji": "🗃️",
+    "id": 11,
+    "track": "Real Projects: Beginner",
+    "title": "Module 11: The Pipe Obstacle Blueprint",
+    "emoji": "🟩",
     "color": "#00E5A0",
-    "desc": "Memory constraints, Booleans, Integers, and Vectors",
+    "desc": "Build the pipe obstacle actor with top and bottom meshes, scrolling movement, and a gap the bird must fly through.",
     "lessons": [
       {
-        "id": "6-1",
-        "title": "1. Strong Typing",
+        "id": "11-1",
+        "title": "1. Creating BP_Pipe",
         "xp": 80,
-        "duration": "Sem 2, Wk 3",
+        "duration": "Sem 1, Wk 2",
         "steps": [
           {
             "type": "learn",
-            "title": "Memory Pointers",
-            "icon": "💾",
-            "body": "In computer science, a Variable is an allocated block of memory reserved to store data. UE5 uses **Strong Typing**. You cannot plug a text word into a math equation. Data types are explicitly color-coded in Blueprints to prevent memory corruption.",
-            "tip": "To create a variable, click the '+' icon in the 'Variables' section of the My Blueprint panel on the far left!"
-          }
-        ]
-      },
-      {
-        "id": "6-2",
-        "title": "2. Booleans (Red)",
-        "xp": 90,
-        "duration": "Sem 2, Wk 3",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Binary Logic",
-            "icon": "🔴",
-            "body": "The **Boolean** is the smallest data type (1 bit of memory).\n\nIt stores binary states: **True** (1) or **False** (0).\n\nBooleans are the foundation of all game logic. `IsPlayerDead`, `HasKey`, `IsReloading`. We use these True/False states to direct the execution flow using Branch (If/Else) nodes.",
-            "tip": "Name your booleans as questions (e.g., 'bIsJumping') so the logic reads like plain English!"
-          }
-        ]
-      },
-      {
-        "id": "6-3",
-        "title": "3. Integers (Cyan)",
-        "xp": 100,
-        "duration": "Sem 2, Wk 4",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Whole Numbers",
-            "icon": "🔵",
-            "body": "An **Integer** is a 32-bit whole number with absolutely no decimal places (e.g., 1, 5, 42, -10).\n\nIntegers are perfectly precise. We use them for counting discrete items where a fraction makes no sense. You cannot have 1.5 bullets in a magazine, or 2.3 lives remaining.\n\nIf you divide an Integer (5 / 2), the result is 2. The engine throws away the remainder because Integers mathematically cannot hold fractions.",
-            "tip": "Use Integers for Array Indexes, Ammo Counts, and Lives."
-          }
-        ]
-      },
-      {
-        "id": "6-4",
-        "title": "4. Floats (Green)",
-        "xp": 120,
-        "duration": "Sem 2, Wk 4",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Floating-Point Precision",
-            "icon": "🟢",
-            "body": "A **Float** is a single-precision floating-point number (e.g., 1.0, 3.14159, -0.5).\n\nFloats are required for continuous, granular data: Physics distances, Health Percentages, and Timers.\n\n*The Architecture Flaw:* Floats are subject to microscopic decimal drift. Because computers calculate in binary, a float value of `5.0` might technically be stored in RAM as `4.999999`.",
-            "tip": "Because of decimal drift, NEVER use the 'Equals (==)' node on two Floats. Always use 'Nearly Equal' to account for microscopic errors!"
-          },
-          {
-            "type": "quiz",
-            "q": "Why is it dangerous to use a Float (Green) variable to count discrete items like 'Keys Collected'?",
-            "opts": [
-              "Floats cannot be added together",
-              "Floats are subject to microscopic mathematical imprecision (e.g., 0.9999) making exact Equality checks fail",
-              "Floats take up too much RAM",
-              "Floats are only for UI"
-            ],
-            "ans": 1,
-            "explain": "If you check 'If Keys == 3.0', it might fail if the float evaluates to 2.999999. Integers guarantee exact wholeness."
-          }
-        ]
-      },
-      {
-        "id": "6-5",
-        "title": "5. Vectors (Yellow)",
-        "xp": 150,
-        "duration": "Sem 2, Month 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Spatial Structs",
-            "icon": "🟡",
-            "body": "A **Vector** is not a base data type; it is a `Struct` (a package) containing exactly three Floats: **X, Y, and Z**.\n\nVectors consume 3x the memory of a Float. They are fundamentally required for calculating 3D spatial coordinates (Location), scaling sizes, and determining mathematical velocity trajectories.",
-            "tip": "You can right-click a Vector pin on any node and select 'Split Struct Pin' to expose the raw X, Y, and Z float values!"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "track": "Year 2: AAA Logic Engineering",
-    "title": "Module 7: The Physics of Flappy Bird",
-    "emoji": "🐦",
-    "color": "#FF4060",
-    "desc": "Impulses, Gravity, and Rigid Body Mathematics",
-    "lessons": [
-      {
-        "id": "7-1",
-        "title": "1. The Blank Architecture",
-        "xp": 100,
-        "duration": "Sem 3, Wk 1",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Zero Boilerplate",
-            "icon": "📁",
-            "body": "We build from scratch using the **Blank** template.\n\nCreate a new project. Name it `FlappyClone`. \nWe do this because using a Character template provides pre-written walking code. We must learn to interface directly with the raw physics engine.",
-            "tip": "Ensure 'Starter Content' is checked so we have access to a simple sphere mesh."
-          }
-        ]
-      },
-      {
-        "id": "7-2",
-        "title": "2. The Pawn Avatar",
-        "xp": 100,
-        "duration": "Sem 3, Wk 1",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Actor Possession",
-            "icon": "🥚",
-            "body": "Right-click the Content Browser -> Blueprint Class -> Select **Pawn**. Name it `BP_Bird`.\n\nA Pawn is an Actor that can be 'possessed' by a Player Controller. Open `BP_Bird`. \nAdd a `Static Mesh Component` (a Sphere). This acts as the physical representation of the bird.",
-            "tip": "A 'Character' class is a subclass of Pawn that includes walking code. For a flying bird, a basic Pawn is mathematically cleaner."
-          }
-        ]
-      },
-      {
-        "id": "7-3",
-        "title": "3. The Chaos Physics Interface",
-        "xp": 150,
-        "duration": "Sem 3, Wk 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Yielding Control",
-            "icon": "🍎",
-            "body": "Select the Static Mesh in `BP_Bird`. In the Details panel, check **Simulate Physics**.\n\n*The Paradigm Shift:* The moment you check this, you surrender transform control to the Chaos Physics Engine thread. It instantly calculates $9.8 m/s^2$ gravity and applies mass. You must no longer use 'Set Actor Location' to move this object, or you will cause violent collision tunneling.",
-            "tip": "In the Physics constraints, check 'Lock Position Y', 'Lock Rotation X', and 'Lock Rotation Y'. This forces the 3D physics engine to operate strictly on a 2D plane!"
-          }
-        ]
-      },
-      {
-        "id": "7-4",
-        "title": "4. Force vs Impulse",
-        "xp": 150,
-        "duration": "Sem 3, Wk 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Kinetic Manipulation",
-            "icon": "🚀",
-            "body": "Open the Event Graph. Add a 'Spacebar' event. Drag off and add the **Add Impulse** node. Plug the Mesh into Target.\n\n• **Force:** Calculated over time ($F=ma$). Used for thrusters or sustained wind.\n• **Impulse:** An instantaneous change in linear velocity vector. Perfect for explosions or jumps.\n\nSet the Z impulse to 800. Check the **Vel Change** boolean. This forces the engine to bypass mass calculations, guaranteeing an identical jump height regardless of the mesh size.",
-            "tip": "If you leave 'Vel Change' unchecked, an impulse of 800 might barely move a large sphere because the physics engine calculates its heavy mass!"
-          },
-          {
-            "type": "quiz",
-            "q": "When adding an Impulse to make the bird flap, what does checking the 'Vel Change' boolean do?",
-            "opts": [
-              "It makes the jump happen over 5 seconds",
-              "It ignores the object's physical mass, applying the exact mathematical velocity instantly",
-              "It reverses gravity",
-              "It deletes the object"
-            ],
-            "ans": 1,
-            "explain": "Velocity Change alters the momentum vector directly ($v = v + impulse$). Without it, the engine calculates force over mass ($F=ma$)."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "track": "Year 2: AAA Logic Engineering",
-    "title": "Module 8: Infinite Spawning & Memory",
-    "emoji": "♻️",
-    "color": "#FFB800",
-    "desc": "Timers, Garbage Collection, and Procedural Instantiation",
-    "lessons": [
-      {
-        "id": "8-1",
-        "title": "1. The Pipe Obstacle",
-        "xp": 100,
-        "duration": "Sem 3, Wk 3",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Kinematic Walls",
+            "title": "The Pipe Actor Structure",
             "icon": "🧱",
-            "body": "Create an Actor `BP_Pipe`. Add two tall cubes (Top and Bottom) with a gap.\n\nDo NOT check Simulate Physics. We want these to be infinitely dense, immovable walls. \nIn `BP_Pipe` Event Graph, locate **Event Tick**. Drag off and use **Add Actor Local Offset**. Set X to `-5.0`.\n\nBecause Tick fires every frame, the pipe continually mathematically subtracts from its X coordinate, sliding left toward the player.",
-            "tip": "Frame dependence warning: Later we must multiply this by Delta Time, otherwise 120fps players face pipes moving twice as fast!"
-          }
-        ]
-      },
-      {
-        "id": "8-2",
-        "title": "2. The Spawner Manager",
-        "xp": 120,
-        "duration": "Sem 3, Wk 3",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Looping Instantiation",
-            "icon": "✨",
-            "body": "Create `BP_Spawner` and place it off-screen right. \n\nOn BeginPlay, use **Set Timer by Event** (Time: 2.5, Looping: True).\nConnect a Custom Event `SpawnPipes`. Use **Spawn Actor From Class** (`BP_Pipe`).\n\nTo vary the height, split the Spawn Transform pin. Plug the Spawner's X/Y location in, but use a **Random Float in Range** node for the Z-axis.",
-            "tip": "Timers run highly optimized background clocks, unlike standard 'Delay' nodes which stall execution."
-          }
-        ]
-      },
-      {
-        "id": "8-3",
-        "title": "3. Garbage Collection",
-        "xp": 150,
-        "duration": "Sem 3, Wk 4",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Preventing Memory Leaks",
-            "icon": "🗑️",
-            "body": "*Crucial:* If pipes spawn infinitely, your RAM will eventually hit 100% and crash.\n\nOpen `BP_Pipe`. In its Details panel, find **Initial Life Span**. Set it to `10.0`.\n\nThis commands the engine: 'After exactly 10 seconds, execute the Destroy Actor function, sever physics calculations, and flush this pointer from memory.'",
-            "tip": "Advanced AAA games use 'Object Pooling' instead of destruction to save CPU overhead!"
+            "body": "In the **Content Browser**, right-click and create a new **Blueprint Class** using `Actor` as the parent. Name it `BP_Pipe`. Open it. We need three components: a top pipe mesh, a bottom pipe mesh, and a gap trigger box. Click **Add Component** and add a **Static Mesh** named `TopPipe`. Add another **Static Mesh** named `BottomPipe`. Finally, add a **Box Collision** named `ScoreTrigger`. The `ScoreTrigger` box will sit in the gap between the two pipes — when the bird passes through it, we increment the score. Make a `Scene Component` the root and attach all three to it. This clean hierarchy keeps the pipe as one self-contained actor.",
+            "tip": "Use a plain `Scene Component` as the root rather than a mesh — it gives you a clean transform origin without visual baggage."
           },
           {
             "type": "quiz",
-            "q": "Why is setting the 'Initial Life Span' mandatory for dynamically spawned obstacles?",
+            "q": "Why is a `Box Collision` component placed in the gap between the two pipe meshes?",
             "opts": [
-              "To make them move faster",
-              "To prevent a Memory Leak that will eventually exhaust system RAM and crash the game",
-              "To add them to the player's score",
-              "To trigger the game over screen"
+              "To prevent the bird from passing through the gap",
+              "To detect when the bird successfully passes through the gap so the score can be incremented",
+              "To add physics simulation to the pipe gap",
+              "To make the gap visible to the player"
             ],
             "ans": 1,
-            "explain": "Every spawned actor consumes RAM. If you spawn infinite objects without destroying the old ones, the engine crashes."
+            "explain": "The `Box Collision` in the gap acts as a score trigger — it detects overlap events. When the bird enters this invisible box, we know it successfully navigated the gap and we award a point. It does NOT block movement; its collision profile is set to overlap-only."
+          },
+          {
+            "type": "learn",
+            "title": "Assigning Pipe Meshes",
+            "icon": "📦",
+            "body": "Select `TopPipe` in the **Components** panel. In the **Details** panel under **Static Mesh**, assign a tall, thin cube mesh. If you enabled Starter Content, use the `Cube` from `Engine Content`. Scale it to `X=1, Y=1, Z=5` to make it tall. Position its `Relative Location` to `Z=400` (above the gap). Select `BottomPipe` and use the same mesh with the same scale. Position it at `Z=-400` (below the gap). The gap between them is now 800 units wide by default. Select `ScoreTrigger` and set its `Box Extent` to `X=50, Y=100, Z=350` — large enough to catch the bird reliably. Set its `Relative Location` to `Z=0` so it sits exactly in the center of the gap.",
+            "tip": "Keep the gap size between 250-400 units for a fair but challenging experience — playtesting will tell you the sweet spot."
+          },
+          {
+            "type": "quiz",
+            "q": "The gap between TopPipe (Z=400) and BottomPipe (Z=-400) is 800 units. If the bird's collision sphere has a radius of 32 units, what is the effective gap the player must navigate?",
+            "opts": [
+              "800 units",
+              "736 units — the gap minus the bird's diameter on each side",
+              "400 units",
+              "832 units"
+            ],
+            "ans": 1,
+            "explain": "The effective gap is 800 minus the bird's full diameter (32 × 2 = 64), giving 736 units of navigable space. This is why tuning the gap with a real collision sphere in mind matters — the visual gap always appears larger than what the player can actually use."
+          },
+          {
+            "type": "learn",
+            "title": "Configuring Collision Profiles",
+            "icon": "⚙️",
+            "body": "Select `TopPipe` in the **Components** panel. In **Details**, find the **Collision** section. Set **Collision Presets** to `BlockAllDynamic`. Do the same for `BottomPipe`. This means the bird will physically collide with the pipes and trigger an overlap event. For `ScoreTrigger`, set **Collision Presets** to `OverlapAllDynamic`. This means the box does NOT block anything — it only fires overlap events. The critical distinction is: `Block` stops movement and triggers Hit events, while `Overlap` allows pass-through and triggers Overlap events. Mixing these up is the most common beginner collision mistake in UE5.",
+            "tip": "When in doubt, open the **Collision Presets** dropdown and read the tooltip — each preset clearly states what it blocks and what it overlaps."
+          },
+          {
+            "type": "quiz",
+            "q": "What is the key difference between setting a collision component to `BlockAllDynamic` versus `OverlapAllDynamic`?",
+            "opts": [
+              "BlockAllDynamic makes the object invisible; OverlapAllDynamic makes it visible",
+              "BlockAllDynamic physically stops objects and fires Hit events; OverlapAllDynamic allows pass-through and fires Overlap events without stopping movement",
+              "They are identical — both stop movement and fire events",
+              "OverlapAllDynamic is only used for triggers; BlockAllDynamic is only for walls"
+            ],
+            "ans": 1,
+            "explain": "This distinction is fundamental. `BlockAllDynamic` creates a physical barrier — the bird bounces off or stops, triggering `OnComponentHit`. `OverlapAllDynamic` is a ghost volume — objects pass through it freely, triggering `OnComponentBeginOverlap`. Using the wrong one means either your score trigger blocks the bird, or your pipe walls let the bird fly through them."
+          },
+          {
+            "type": "learn",
+            "title": "Pipe Scrolling Movement",
+            "icon": "⬅️",
+            "body": "In `BP_Pipe`'s **Event Graph**, add an **Event Tick** node. Drag off and search for **Add Actor Local Offset**. Set the `Delta Location` X to `-600` — this moves the pipe left. But this is frame-rate dependent! If a player runs at 120fps, the pipe moves twice as fast as at 60fps. Fix this by adding a **Get World Delta Seconds** node and multiplying it by `600` using a **Float × Float** node. Connect the result to the `Delta Location` X pin. Delta Seconds gives you the time since the last frame — multiplying speed by it makes movement frame-rate independent, which is essential for fair gameplay across all devices.",
+            "tip": "Rule: ANY value applied every `Event Tick` that represents speed MUST be multiplied by `Get World Delta Seconds`. No exceptions."
+          },
+          {
+            "type": "quiz",
+            "q": "A pipe moves left 600 units per tick without Delta Time. On a phone running at 30fps it moves at 18,000 units/sec. On a PC at 120fps it moves at 72,000 units/sec. What is the fix?",
+            "opts": [
+              "Cap the frame rate to 60fps in Project Settings",
+              "Multiply the 600 movement value by `Get World Delta Seconds` so speed is consistent regardless of frame rate",
+              "Use `Set Actor Location` instead of `Add Actor Local Offset`",
+              "Reduce the movement value to 5 so it works at all frame rates"
+            ],
+            "ans": 1,
+            "explain": "Delta Time is the time elapsed since the last frame. At 30fps it's ~0.033 seconds; at 120fps it's ~0.008 seconds. Multiplying your speed by Delta Time means the total distance per second is always the same: 600 × 0.033 × 30fps = 600 units/sec, and 600 × 0.008 × 120fps = 600 units/sec. This is called frame-rate independent movement and is non-negotiable for fair multiplayer or cross-device games."
+          }
+        ]
+      },
+      {
+        "id": "11-2",
+        "title": "2. Pipe Destruction & Pooling",
+        "xp": 80,
+        "duration": "Sem 1, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Auto-Destroying Off-Screen Pipes",
+            "icon": "🗑️",
+            "body": "Pipes that scroll off the left side of the screen still consume RAM and CPU tick cycles. We need to destroy them. In `BP_Pipe`'s **Event Tick**, after moving the pipe, get the pipe's **Get Actor Location** and **Break Vector** to access its `X` component. Feed the `X` value into a **Less Than (<)** node and compare it to `-2000` (well off-screen left). If `true`, connect to a **Destroy Actor** node targeting `Self`. This immediately removes the pipe from the world, freeing its memory. Without this, after 5 minutes of gameplay you could have hundreds of off-screen pipes eating RAM and frame budget — classic memory leak.",
+            "tip": "Add a `Print String` with the pipe count (using `Get All Actors of Class`) during development to verify pipes are being cleaned up correctly."
+          },
+          {
+            "type": "quiz",
+            "q": "Why is it critical to destroy `BP_Pipe` actors after they scroll off-screen, rather than just leaving them?",
+            "opts": [
+              "Off-screen actors cause rendering glitches",
+              "Every Actor in memory consumes RAM and runs its Event Tick every frame — accumulating hundreds of off-screen pipes will progressively degrade performance and eventually crash the game",
+              "UE5 automatically pauses actors that are off-screen",
+              "Off-screen actors interfere with the spawner's timer"
+            ],
+            "ans": 1,
+            "explain": "Every live Actor in UE5 runs its Tick function and occupies memory. In an endless runner, pipes spawn every 2 seconds — after 10 minutes that's 300 un-destroyed pipes all running Tick. This rapidly degrades frame rate and will eventually exhaust RAM. `Destroy Actor` severs all references and returns the memory to the system, keeping the game running indefinitely."
+          },
+          {
+            "type": "learn",
+            "title": "Setting Initial Life Span as Backup",
+            "icon": "⏱️",
+            "body": "As a safety net alongside the position-based destruction, select `BP_Pipe` in the **Content Browser** and open its **Class Defaults** (the toolbar button in Blueprint Editor). In **Details**, find **Actor > Initial Life Span**. Set it to `15.0` seconds. This means even if the position check somehow fails — for example if the pipe gets stuck or the player pauses — the pipe will destroy itself after 15 seconds regardless. This dual-destruction approach (position check + lifespan) is defensive programming. At a scrolling speed of 600 units/sec, a pipe takes about 8 seconds to cross the screen, so 15 seconds is a safe upper limit that never triggers during normal play.",
+            "tip": "Always use defensive programming — two independent safeguards are better than relying on one mechanism that might have edge cases."
+          },
+          {
+            "type": "quiz",
+            "q": "A pipe scrolls at 600 units/sec and must travel 4000 units off screen to be destroyed. The Initial Life Span is set to 15 seconds. Will the lifespan timer destroy the pipe before the position check during normal gameplay?",
+            "opts": [
+              "Yes — 15 seconds is too short for normal gameplay",
+              "No — at 600 units/sec the pipe travels 4000 units in about 6.7 seconds, well before the 15-second lifespan fires, so the position check destroys it first under normal conditions",
+              "Both triggers fire simultaneously",
+              "The lifespan timer overrides the position check"
+            ],
+            "ans": 1,
+            "explain": "4000 units ÷ 600 units/sec = 6.67 seconds to reach the destruction X threshold. Since 6.67 < 15, the position check always fires first during normal play. The 15-second lifespan only activates in edge cases (pausing, bug, extreme lag), acting as a guaranteed cleanup fallback — exactly the role of a safety net."
+          },
+          {
+            "type": "learn",
+            "title": "Adjustable Gap Variable",
+            "icon": "📐",
+            "body": "Instead of hardcoding the pipe gap at 800 units, make it a variable so you can tweak difficulty. In `BP_Pipe`, go to the **My Blueprint** panel and click `+Variable`. Name it `GapSize`, type `Float`, default value `800`. In the **Construction Script** (not Event Graph — Construction Script runs when you place the actor), get `GapSize`, divide by `2`, and use that result to set `TopPipe`'s `Relative Location Z` (positive half-gap) and `BottomPipe`'s `Relative Location Z` (negative half-gap). Now, when `BP_PipeSpawner` spawns a pipe, it can pass a different `GapSize` value each time to progressively shrink the gap as difficulty increases. This is data-driven design — gameplay parameters live in variables, not buried in hardcoded numbers.",
+            "tip": "In the **Details** panel for the `GapSize` variable, check **Instance Editable** so you can adjust it per-pipe directly in the viewport."
+          },
+          {
+            "type": "quiz",
+            "q": "Why is the gap calculation placed in the `Construction Script` rather than `Event BeginPlay`?",
+            "opts": [
+              "Construction Script runs faster than BeginPlay",
+              "Construction Script executes in the editor when you place or modify the actor, allowing you to see the gap update live in the viewport as you change GapSize — BeginPlay only runs when the game starts",
+              "BeginPlay cannot access Static Mesh components",
+              "Construction Script has access to more Blueprint nodes than BeginPlay"
+            ],
+            "ans": 1,
+            "explain": "The Construction Script runs both in-editor (whenever you modify properties) and at runtime before BeginPlay. This means changing `GapSize` on a placed pipe instantly updates its visual layout in the viewport, giving you real-time feedback during level design. Using BeginPlay would mean you can only see the result after pressing Play, making iteration much slower. Construction Scripts are ideal for any setup that should be visible during editing."
+          },
+          {
+            "type": "learn",
+            "title": "Compiling and Testing BP_Pipe",
+            "icon": "✅",
+            "body": "Compile and Save `BP_Pipe`. Drag one instance from the **Content Browser** into your level. You should immediately see two tall pipes with a gap between them — the Construction Script positions them based on `GapSize`. Press **Play**. The pipe should scroll left at a consistent speed. After it passes X=-2000 it should disappear from the Outliner, confirming the destruction logic works. If it doesn't move, check that `Add Actor Local Offset` is connected to the execution wire from `Event Tick` and that `Delta Seconds` is being multiplied. If it doesn't disappear, check the Less Than comparison value and ensure `Destroy Actor` is actually connected.",
+            "tip": "Use **Window > Statistics** to monitor actor count in real-time — watch it stay flat as pipes spawn and destroy, confirming no memory leak."
+          },
+          {
+            "type": "quiz",
+            "q": "During testing, the pipe scrolls but never disappears even after going far off-screen. What is the most likely cause?",
+            "opts": [
+              "The pipe's `Initial Life Span` is set too high",
+              "The `Less Than (<)` node's comparison value is too negative (e.g., -99999), or the `Destroy Actor` node is not connected to the `True` execution pin of the `Branch` node",
+              "The `Add Actor Local Offset` value is too small",
+              "The `Construction Script` is interfering with the destruction logic"
+            ],
+            "ans": 1,
+            "explain": "The most common causes of a pipe not destroying are: the threshold value is wrong (so the pipe's X never reaches it), or the `Destroy Actor` is not actually connected in the execution chain. Always check that the `Branch` node's `True` pin leads to `Destroy Actor`, and that the comparison threshold is a reasonable value like -2000 rather than an extreme number."
+          }
+        ]
+      },
+      {
+        "id": "11-3",
+        "title": "3. Connecting Spawner to Pipe",
+        "xp": 90,
+        "duration": "Sem 1, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Updating BP_PipeSpawner",
+            "icon": "🏭",
+            "body": "Now that `BP_Pipe` exists, open `BP_PipeSpawner`. Find the `SpawnPipeEvent` Custom Event. The **Spawn Actor from Class** node's `Class` pin was left empty — click it and select `BP_Pipe`. For the **Spawn Transform**, we need a proper location. Use **Get Actor Location** on `Self`, then **Break Vector**. Take the `X` and `Y` values, but replace `Z` with a **Random Float in Range** node (Min=`200`, Max=`700`). Reconstruct the vector with **Make Vector** and connect it to the `Spawn Transform` `Location` pin. This spawns each pipe at the spawner's X/Y position but at a random height, creating the varied challenge. Ensure the spawner is placed far to the right (X=3000) in your level.",
+            "tip": "You can expose the `Min` and `Max` values of the Random Float as variables on the spawner to tune difficulty from the editor without opening Blueprint."
+          },
+          {
+            "type": "quiz",
+            "q": "After setting up the Spawner, pipes spawn but always at the same height. What is the most likely cause?",
+            "opts": [
+              "The timer interval is too short",
+              "The `Random Float in Range` node's Min and Max are set to the same value, or the node is not connected to the Z pin of `Make Vector`",
+              "The pipe's `Construction Script` is overriding the spawn location",
+              "The `Spawn Actor from Class` node doesn't support transform overrides"
+            ],
+            "ans": 1,
+            "explain": "If Min equals Max, `Random Float in Range` always returns that one value — no randomness. Also check that the output of `Random Float in Range` is actually wired to the `Z` pin of `Make Vector`, not left floating. Both mistakes produce pipes at identical heights every time."
+          },
+          {
+            "type": "learn",
+            "title": "Progressive Difficulty: Shrinking Gap",
+            "icon": "📈",
+            "body": "To make the game get harder over time, we'll shrink the pipe gap every 10 pipes. In `BP_PipeSpawner`, add an `Integer` variable named `PipesSpawned`, default `0`. In `SpawnPipeEvent`, after spawning the pipe, increment `PipesSpawned` by `1` using **Integer + Integer**. Add a **Branch** node checking if `PipesSpawned % 10 == 0` (use the **Modulo** node then an **Equal** node comparing to `0`). If `true`, add a `Float` variable named `CurrentGapSize` (default `800`). Subtract `50` from it and **Clamp** it between `400` and `800`. On the spawned pipe reference returned by **Spawn Actor from Class**, call `SetGapSize` (you'll need to make this a function in `BP_Pipe` that sets the `GapSize` variable and re-runs the Construction Script logic). This makes the game progressively harder every 10 pipes.",
+            "tip": "Use `Print String` to display `CurrentGapSize` during testing so you can see difficulty ramping up in real-time."
+          },
+          {
+            "type": "quiz",
+            "q": "Why is `Modulo (%)` used to check if the gap should shrink, rather than checking `PipesSpawned == 10`, `== 20`, `== 30` etc.?",
+            "opts": [
+              "Modulo is faster to compute than multiple equality checks",
+              "Modulo gives the remainder of division — `PipesSpawned % 10 == 0` is true at 10, 20, 30, 40... automatically, covering all future milestones with a single check that scales infinitely",
+              "Equality checks don't work with Integer variables in Blueprint",
+              "Modulo is the only way to compare integers in Blueprint"
+            ],
+            "ans": 1,
+            "explain": "Manually checking `== 10`, `== 20` etc. would require adding a new branch for every milestone and breaks if you want different intervals. `Modulo` elegantly handles all cases: any number divisible by 10 gives remainder 0, so `% 10 == 0` fires at pipes 10, 20, 30, 40... forever — one node that scales to infinity."
+          },
+          {
+            "type": "learn",
+            "title": "Increasing Scroll Speed Over Time",
+            "icon": "⚡",
+            "body": "Alongside shrinking gaps, we can increase pipe speed over time. Add a `Float` variable to `BP_PipeSpawner` named `PipeSpeed`, default `600`. In `SpawnPipeEvent`, after the gap shrink logic, also increase `PipeSpeed` by `10` every 10 pipes (same modulo check). Clamp it between `600` and `1200`. When spawning, get the pipe reference from **Spawn Actor from Class** and call a custom function `SetScrollSpeed` on `BP_Pipe` that stores the value in a variable. In `BP_Pipe`'s Event Tick, replace the hardcoded `600` with this `ScrollSpeed` variable. Now both gap and speed tighten as the player improves. Two compounding difficulty levers create a much deeper challenge curve than either alone.",
+            "tip": "Increasing speed AND shrinking gaps simultaneously is powerful — consider adding a slight delay between the two escalations so players can adapt."
+          },
+          {
+            "type": "quiz",
+            "q": "Why is clamping `PipeSpeed` between 600 and 1200 important?",
+            "opts": [
+              "Blueprint Float variables can only store values up to 1200",
+              "Without clamping, speed increases infinitely — eventually pipes move so fast they teleport past the bird's collision sphere each frame without triggering a hit, making the game impossible to lose after a certain point",
+              "Clamping improves Blueprint compile speed",
+              "Values above 1200 cause the `Add Actor Local Offset` node to crash"
+            ],
+            "ans": 1,
+            "explain": "This is a real physics bug called 'tunneling' — when an object moves so fast in a single frame that it passes completely through another object without overlap registering. At extreme speeds, pipes would fly through the bird without killing it. Clamping at 1200 keeps movement within safe collision detection limits while still providing significant difficulty increase."
+          },
+          {
+            "type": "learn",
+            "title": "Compile, Test, and Tune",
+            "icon": "🎮",
+            "body": "Compile and Save both `BP_Pipe` and `BP_PipeSpawner`. Delete any manually placed test pipes from your level. Ensure one `BP_PipeSpawner` is placed at `X=3000, Y=0, Z=300`. Press **Play**. Pipes should spawn every 2 seconds at varying heights, scroll left at 600 units/sec, and disappear when they leave the screen. After 10 pipes, the gap should visibly shrink. Watch the Outliner — the pipe count should stay stable (never growing). If pipes don't vary in height, check the `Random Float in Range` connection. If speed doesn't increase, add a `Print String` showing `PipeSpeed` after each modulo check to debug the increment logic.",
+            "tip": "Set the spawn interval to `0.1` seconds temporarily to quickly generate 20+ pipes and verify the difficulty curve without waiting."
+          },
+          {
+            "type": "quiz",
+            "q": "During testing, the pipe count in the Outliner keeps growing every 2 seconds and never goes down. What does this indicate?",
+            "opts": [
+              "The timer is firing too quickly",
+              "The destruction logic is not working — pipes are spawning but never being destroyed, confirming a memory leak",
+              "The Construction Script is spawning extra pipes",
+              "The `BP_PipeSpawner` is placed too close to the camera"
+            ],
+            "ans": 1,
+            "explain": "A rising actor count that never decreases is the classic signature of a memory leak. Either the `Destroy Actor` node is not connected, the threshold X value is never reached, or the `Initial Life Span` is set to 0 (which means live forever in UE5, not instant destruction). Fix the destruction logic immediately before adding more systems — leaks compound and become impossible to isolate later."
+          }
+        ]
+      },
+      {
+        "id": "11-4",
+        "title": "4. Collision Detection & Death",
+        "xp": 100,
+        "duration": "Sem 1, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "OnHit Event on the Bird",
+            "icon": "💥",
+            "body": "Open `BP_Bird`. Select the `CollisionSphere` component. In the **Details** panel scroll down to **Events** and click the `+` next to **On Component Hit**. This adds an `OnComponentHit` event node to the Event Graph. This event fires when the sphere physically collides with any `BlockAllDynamic` object — including our pipe meshes. From this event, drag off and call a Custom Event named `HandleDeath`. Separating the hit detection from the death logic keeps your graph clean and allows you to call `HandleDeath` from multiple sources (hitting a pipe, hitting the floor) without duplicating code. This pattern — a single death handler called from multiple triggers — is fundamental game architecture.",
+            "tip": "Always separate 'what caused the death' from 'what happens when you die' — this makes adding new kill conditions trivial later."
+          },
+          {
+            "type": "quiz",
+            "q": "Why create a separate `HandleDeath` Custom Event rather than putting all death logic directly inside `OnComponentHit`?",
+            "opts": [
+              "Custom Events run faster than inline logic",
+              "Separating the logic means multiple triggers (pipe hit, floor hit, time limit) can all call one central `HandleDeath` function without duplicating code — changing death behavior only requires editing one place",
+              "OnComponentHit cannot contain more than 3 connected nodes",
+              "Custom Events are required for any logic that involves destroying actors"
+            ],
+            "ans": 1,
+            "explain": "This is the DRY principle — Don't Repeat Yourself. If death logic lived inside `OnComponentHit`, you'd need to copy it into every new kill condition. With a central `HandleDeath` Custom Event, adding a new way to die (lava, timer, falling) just means adding one more call to `HandleDeath`. You only maintain the actual death behavior in one location."
+          },
+          {
+            "type": "learn",
+            "title": "Implementing HandleDeath",
+            "icon": "💀",
+            "body": "Inside the `HandleDeath` Custom Event, we need to: stop the bird from moving, stop pipe spawning, and show the game over screen. First, add a **Boolean** variable to `BP_Bird` named `bIsDead`, default `false`. At the very start of `HandleDeath`, add a **Branch** checking `bIsDead` — if `true`, return immediately (do nothing). If `false`, set `bIsDead` to `true`. This prevents `HandleDeath` from firing twice (two simultaneous collisions can both trigger the event in the same frame). Then set the `BirdMovement` component's **Active** to `false` using **Set Active** to freeze movement. Finally, use **Get All Actors of Class** (`BP_PipeSpawner`) and call **Destroy Actor** on the result to stop new pipes from spawning.",
+            "tip": "The `bIsDead` guard at the start of any death/completion handler is essential — simultaneous events are extremely common in physics-based games."
+          },
+          {
+            "type": "quiz",
+            "q": "Why is a `bIsDead` Boolean check placed at the start of `HandleDeath` before any other logic?",
+            "opts": [
+              "To improve Blueprint compile performance",
+              "Physics collisions can trigger the same event multiple times in a single frame — the Boolean guard ensures death logic only runs once, preventing duplicate effects like showing the game over screen twice",
+              "Boolean variables are required before any Branch node in Blueprint",
+              "It prevents the bird from dying during the first 2 seconds of gameplay"
+            ],
+            "ans": 1,
+            "explain": "When the bird hits a pipe at speed, the physics engine can register multiple overlapping collision contacts in a single frame — all firing `OnComponentHit` simultaneously. Without the guard, `HandleDeath` could execute 3-4 times in one frame, spawning multiple game over screens, decrementing score multiple times, or causing undefined behavior. The Boolean guard is a simple one-time lock that prevents this."
+          },
+          {
+            "type": "learn",
+            "title": "Floor Death Detection",
+            "icon": "⬇️",
+            "body": "The bird should also die when it hits the floor. In your level, select the floor mesh you created in Module 10. In its **Details** panel, under **Collision**, set **Collision Presets** to `BlockAllDynamic`. This means the bird's `CollisionSphere` (which is also `BlockAllDynamic`) will generate a Hit event when they meet. Since the bird already has `OnComponentHit` calling `HandleDeath`, the floor collision is handled automatically — no extra Blueprint needed. This is the power of a unified collision response system. However, you should also add a Z-position check in `BP_Bird`'s `Event Tick`: if `Actor Location Z < 50`, also call `HandleDeath`. This is a failsafe in case collision detection misses the hit.",
+            "tip": "Always add both physics-based AND position-based death detection — physics can miss fast-moving objects; position checks never will."
+          },
+          {
+            "type": "quiz",
+            "q": "The bird dies when hitting a pipe but not when hitting the floor. The floor has `BlockAllDynamic` collision. What is the most likely cause?",
+            "opts": [
+              "The floor mesh doesn't support collision",
+              "The bird's `CollisionSphere` collision preset may be set to `OverlapAllDynamic` instead of `BlockAllDynamic` — both objects need to be set to Block each other for a Hit event to fire",
+              "The `OnComponentHit` event is specific to pipes only",
+              "Floor collision requires a separate `OnComponentHit` event"
+            ],
+            "ans": 1,
+            "explain": "In UE5, a Hit event only fires when BOTH colliding objects have collision responses set to Block each other. If the bird's `CollisionSphere` is set to Overlap (not Block) against WorldStatic objects (which floors typically are), no Hit event fires. Check the bird's collision profile — it needs to Block WorldStatic or you need to change the floor to Dynamic."
+          },
+          {
+            "type": "learn",
+            "title": "Death Visual Feedback",
+            "icon": "✨",
+            "body": "A silent death is unsatisfying. In `HandleDeath`, after stopping movement, add visual and audio feedback. Use **Spawn Emitter at Location** (search for it in Blueprint) with the `P_Explosion` particle from Starter Content to play a burst effect at the bird's location. Use **Play Sound at Location** with any short `Starter_Sound` asset. Then add a **Delay** of `1.0` second before showing the Game Over UI (which we'll build in the next module). The delay gives the particle effect time to play before the UI appears. This sequence — physics death → visual feedback → delay → UI — is the standard game over flow used in virtually every arcade game.",
+            "tip": "Use `Spawn Emitter at Location` for one-shot particle effects at a point in space — it auto-destroys when finished, no cleanup needed."
+          },
+          {
+            "type": "quiz",
+            "q": "Why add a `Delay` node between the death particle effect and showing the Game Over UI?",
+            "opts": [
+              "The Delay prevents the UI from rendering before the particle is loaded",
+              "Showing UI immediately at the moment of death feels jarring — a brief delay lets the particle effect play and gives the player a moment to process what happened before the screen changes, improving game feel",
+              "The Delay is required for the Game Over widget to initialize correctly",
+              "Without a Delay, the UI would appear behind the particle effect"
+            ],
+            "ans": 1,
+            "explain": "Instant UI transitions feel cheap and abrupt. The 1-second delay serves three purposes: it lets the death particle finish playing, it gives the player's brain time to register the death, and it makes the game feel more polished. This micro-delay is a small but significant piece of 'game feel' — the intangible quality that makes a game feel satisfying to play."
+          }
+        ]
+      },
+      {
+        "id": "11-5",
+        "title": "5. Score System",
+        "xp": 100,
+        "duration": "Sem 1, Wk 2",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Game State and Score Variable",
+            "icon": "🏆",
+            "body": "Score should not live in `BP_Bird` — if the bird is destroyed on death, the score disappears with it. Score belongs in the **Game State**. In the **Content Browser**, create a new Blueprint Class with `GameStateBase` as parent. Name it `BP_FlappyGameState`. Add an `Integer` variable named `Score`, default `0`. Also add a `Integer` variable named `HighScore`, default `0`. Open `BP_FlappyBirdGameMode` and set **Game State Class** to `BP_FlappyGameState`. The Game State persists for the lifetime of the game session, surviving individual actor deaths. This is the correct architectural home for persistent game data like score, lives, and high scores.",
+            "tip": "Game State = data that belongs to the match/session. Player State = data that belongs to one player. Game Mode = rules. Never mix these up."
+          },
+          {
+            "type": "quiz",
+            "q": "Why should the `Score` variable live in `BP_FlappyGameState` rather than in `BP_Bird`?",
+            "opts": [
+              "Game State Blueprints have access to more math nodes",
+              "When the bird is destroyed on death, any variables stored inside it are also destroyed. Game State persists for the entire session, so the score survives the bird's death and can be displayed on the Game Over screen",
+              "Integer variables cannot be stored in Pawn Blueprints",
+              "Game State automatically syncs score to the leaderboard"
+            ],
+            "ans": 1,
+            "explain": "Blueprint variables live and die with their owner Actor. When `Destroy Actor` is called on `BP_Bird`, everything inside it — including a Score variable — is garbage collected. `BP_FlappyGameState` is never destroyed during normal gameplay, making it the reliable persistent container for session data like score. This is a core architectural principle: match-level data belongs in Game State."
+          },
+          {
+            "type": "learn",
+            "title": "Score Trigger: OnComponentBeginOverlap",
+            "icon": "🎯",
+            "body": "Open `BP_Pipe`. Select the `ScoreTrigger` box collision component. In **Details > Events**, click `+` next to **On Component Begin Overlap**. This event fires when any actor enters the box. In the event, check that the `Other Actor` is a `BP_Bird` using **Cast to BP_Bird** — only award a point if the bird passes through (not some other actor). If the cast succeeds, use **Get Game State** then **Cast to BP_FlappyGameState**. Drag off and increment the `Score` variable using **Integer + Integer** (add 1). Set the result back to `Score`. Also check if the new score exceeds `HighScore` and update it if so. This is the complete scoring pipeline.",
+            "tip": "Always verify `Other Actor` identity with a Cast before taking action — collision events fire for ANY overlapping actor, not just the player."
+          },
+          {
+            "type": "quiz",
+            "q": "Why cast `Other Actor` to `BP_Bird` before incrementing the score?",
+            "opts": [
+              "Casting improves the performance of the overlap event",
+              "The `On Component Begin Overlap` event fires for any actor that enters the trigger, including spawned particles or debris — casting ensures you only increment score when specifically the player bird passes through, not any random object",
+              "Blueprint requires a cast before accessing any variable",
+              "The cast prevents the score from going negative"
+            ],
+            "ans": 1,
+            "explain": "Without the cast, any actor that overlaps the score trigger — a debug sphere, a test actor, even certain particles — would incorrectly increment the score. The cast to `BP_Bird` is a filter that ensures only the player character's passage through the gap is counted as a point. Always filter overlap events by actor type."
+          },
+          {
+            "type": "learn",
+            "title": "Displaying Score in HUD",
+            "icon": "📺",
+            "body": "Create a new **Widget Blueprint** (right-click Content Browser → User Interface → Widget Blueprint). Name it `WBP_HUD`. Open it. In the **Designer** tab, drag a **Text** widget from the Palette onto the canvas. Position it at the top center. Name it `ScoreText`. Switch to the **Graph** tab. Add an **Event Tick** (or bind to a delegate — but Tick is simpler for now). Get **Game State**, cast to `BP_FlappyGameState`, get `Score`, convert to String with **Integer to String**, and set it to `ScoreText` using **Set Text**. To show this HUD, open `BP_Bird`'s `BeginPlay`, add **Create Widget** (class: `WBP_HUD`), then **Add to Viewport**. The HUD will now appear and update every frame.",
+            "tip": "For production games, use Event Dispatchers instead of Tick to update UI — but Tick is fine for learning and small projects."
+          },
+          {
+            "type": "quiz",
+            "q": "What is the correct sequence to make a Widget Blueprint appear on screen during gameplay?",
+            "opts": [
+              "Create Widget → Set Visibility → Add to Viewport",
+              "Create Widget → Add to Viewport — `Add to Viewport` both finalizes creation and makes it visible on screen",
+              "Add Widget to HUD → Create Widget",
+              "Create Widget → Add to Player Screen → Compile"
+            ],
+            "ans": 1,
+            "explain": "`Create Widget` instantiates the widget in memory but does NOT display it. `Add to Viewport` then places it on screen. This two-step process is intentional — it lets you configure the widget between creation and display. Skipping `Add to Viewport` is the most common reason widgets 'don't appear' for beginners."
+          },
+          {
+            "type": "learn",
+            "title": "High Score with Save Game",
+            "icon": "💾",
+            "body": "High scores should survive app restarts. UE5 has a built-in **Save Game** system. Create a Blueprint Class with `SaveGame` as parent, named `BP_FlappySaveGame`. Add an `Integer` variable `SavedHighScore`. In `BP_FlappyGameState`, on `BeginPlay`, use **Load Game from Slot** (slot name: `FlappyData`, user index: `0`). Cast the result to `BP_FlappySaveGame` and read `SavedHighScore` into the `HighScore` variable. When a new high score is set, create a new `BP_FlappySaveGame` instance, set its `SavedHighScore`, and call **Save Game to Slot** with the same slot name. This persists to the device's storage and survives app restarts — the same system used by AAA games for save data.",
+            "tip": "Always check if `Load Game from Slot` returns `null` (no save file exists yet) and handle that case by starting with a default high score of 0."
+          },
+          {
+            "type": "quiz",
+            "q": "What happens if `Load Game from Slot` returns `null` and you immediately try to cast it and read `SavedHighScore`?",
+            "opts": [
+              "It returns 0 automatically as the default Integer value",
+              "The cast fails and any Blueprint logic downstream of the cast output will not execute — if you don't handle the null case, your high score display will show nothing or an error on the first ever launch",
+              "UE5 crashes when casting null",
+              "The Save Game system creates a new file automatically"
+            ],
+            "ans": 1,
+            "explain": "When no save file exists (first launch), `Load Game from Slot` returns null. Casting null produces a failed cast — the Cast node's failed output pin fires. If you don't handle this (e.g., by branching on the `Is Valid` pin), any code expecting a valid `BP_FlappySaveGame` reference will simply not run, leaving `HighScore` at 0 from Blueprint initialization. This is correct behavior — just make sure to explicitly handle the null case to avoid silent failures."
           }
         ]
       }
     ]
   },
   {
-    "id": 9,
-    "track": "Year 3: Network Engineering",
-    "title": "Module 9: The Client-Server Paradigm",
-    "emoji": "🌐",
+    "id": 12,
+    "track": "Real Projects: Beginner",
+    "title": "Module 12: Game UI — Menus & Game Over",
+    "emoji": "🖥️",
     "color": "#9D4EDD",
-    "desc": "Authority, Replication, and Remote Procedure Calls",
+    "desc": "Build the complete UI flow — main menu, in-game HUD with live score, and a game over screen with high score and restart.",
     "lessons": [
       {
-        "id": "9-1",
-        "title": "1. The Dedicated Server Model",
-        "xp": 150,
-        "duration": "Sem 5, Wk 1",
+        "id": "12-1",
+        "title": "1. Main Menu Widget",
+        "xp": 80,
+        "duration": "Sem 1, Wk 3",
         "steps": [
           {
             "type": "learn",
-            "title": "The Untrusted Client",
-            "icon": "🖥️",
-            "body": "Unreal Engine enforces a strict **Dedicated Server Architecture**.\n\nThe Server is the ultimate authority. The Clients (players) are blind terminals submitting requests.\nIf a Client calculates its own health, a hacker can lock that memory address to 100 and become invincible.\n\nTherefore, we use the **Has Authority** Switch node. Only the Authority (Server) is legally permitted to subtract health, calculate damage, and spawn critical items.",
-            "tip": "Rule #1 of Multiplayer: The Client is always a liar. Never trust Client math."
-          }
-        ]
-      },
-      {
-        "id": "9-2",
-        "title": "2. Network Roles",
-        "xp": 120,
-        "duration": "Sem 5, Wk 1",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Proxies and Possession",
-            "icon": "🎭",
-            "body": "An Actor has distinct network roles across different machines:\n\n1. **Authority:** The Server's absolute master copy.\n2. **Autonomous Proxy:** The Character *you* control on your screen. You have input permissions here.\n3. **Simulated Proxy:** Every other player on your screen. You cannot control them; your machine just visually simulates the coordinates sent down from the Server.",
-            "tip": "Player Controllers only exist on the Server and the specific owning Client's machine. They do not exist on other players' machines!"
-          }
-        ]
-      },
-      {
-        "id": "9-3",
-        "title": "3. Remote Procedure Calls (RPCs)",
-        "xp": 200,
-        "duration": "Sem 5, Wk 2",
-        "steps": [
-          {
-            "type": "learn",
-            "title": "Bridging the Network",
-            "icon": "📞",
-            "body": "How does a Client ask the Server to shoot a gun? Using an **RPC**.\n\n1. The Client presses Mouse 1.\n2. This triggers a Custom Event set to **Run on Server**.\n3. The Server receives the signal, verifies the player actually has ammo, and fires the bullet mathematically.\n4. If the Server needs to show an explosion, it fires a Custom Event set to **Multicast**, commanding all connected clients to render a particle effect.",
-            "tip": "Do not use Multicast for state changes (like opening a door), only use it for transient visuals!"
+            "title": "Creating WBP_MainMenu",
+            "icon": "🏠",
+            "body": "Create a new **Widget Blueprint** named `WBP_MainMenu`. Open it in the **Designer** tab. Set the canvas size to `1080x1920` (portrait mobile). Add a **Vertical Box** widget, anchor it to fill the full canvas (stretch both ways in the Anchors dropdown). Inside the Vertical Box, add a **Text** widget for the game title — set it to `FLAPPY BIRD`, font size `72`, bold. Add a **Spacer** below it (size Y=100). Add a **Button** widget. Inside the button, add a **Text** widget reading `PLAY`. Add another **Spacer** and a **Button** reading `QUIT`. The Vertical Box automatically stacks them vertically and the anchoring ensures it scales correctly on all screen sizes.",
+            "tip": "Always anchor UI elements relative to the canvas edges, not at fixed pixel positions — fixed positions break on different screen sizes."
           },
           {
             "type": "quiz",
-            "q": "A player presses 'Reload'. Which networking flow is mathematically secure?",
+            "q": "Why is a `Vertical Box` used to arrange menu buttons rather than placing each widget at a fixed X/Y position on the canvas?",
             "opts": [
-              "The Client resets its ammo variable, then tells the Server",
-              "The Client calls a 'Run on Server' RPC. The Server verifies the ammo pool, updates the replicated ammo variable, and syncs it back to the Client.",
-              "A Multicast is sent to all players",
-              "The GameState updates locally"
+              "Vertical Box widgets render faster than individually placed widgets",
+              "A Vertical Box automatically stacks and spaces its children, making layout maintenance easy — adding a new button just requires adding it to the box, not manually repositioning every element below it",
+              "Fixed position widgets don't support click events",
+              "Vertical Box is required for widgets to be visible on mobile screens"
             ],
             "ans": 1,
-            "explain": "The Client must request the action via an RPC. The Server validates the action, modifies the master state, and Replication handles the rest."
+            "explain": "Manual positioning becomes a maintenance nightmare — adding one new element means repositioning everything below it. Layout containers like `Vertical Box` and `Horizontal Box` automatically arrange their children, handling spacing and order. This is why virtually every UI framework from CSS Flexbox to UE5 UMG uses container-based layouts rather than manual coordinate placement."
+          },
+          {
+            "type": "learn",
+            "title": "Wiring the Play Button",
+            "icon": "▶️",
+            "body": "In `WBP_MainMenu`'s **Graph** tab, select the PLAY button in the Designer and click `+` next to **On Clicked** in the **Details** panel. This creates an `OnClicked` event in the graph. Inside it, use **Open Level (by Name)** and type `L_FlappyBird` (your game level name exactly as you saved it). Also call **Remove from Parent** on `Self` to close the menu widget before opening the level. For the QUIT button, add another `OnClicked` event and use **Quit Game**. The `Open Level` node handles all scene loading and cleanup automatically — you don't need to manually destroy actors from the current level.",
+            "tip": "Use `Open Level by Name` not `Open Level by Object Reference` for runtime level loading — object references bake the level into memory at startup."
+          },
+          {
+            "type": "quiz",
+            "q": "Why call `Remove from Parent` on the menu widget before `Open Level`?",
+            "opts": [
+              "Open Level crashes if a widget is still on screen",
+              "While Open Level would destroy the widget anyway, explicitly removing it first ensures a clean transition and prevents a single frame where the menu widget appears on top of the loading new level",
+              "Remove from Parent is required to free the button's memory",
+              "Open Level does not work while any widget is displayed"
+            ],
+            "ans": 1,
+            "explain": "When `Open Level` executes, it destroys the current world and all its actors including widgets — but there can be a one-frame flash where the old UI is visible during the transition. Explicitly calling `Remove from Parent` first ensures the menu disappears cleanly before the level swap begins, producing a cleaner transition. It's a polish detail but highly noticeable without it."
+          },
+          {
+            "type": "learn",
+            "title": "Creating a Menu Level",
+            "icon": "🗺️",
+            "body": "The main menu should have its own level — not the gameplay level. Go to **File > New Level** and select **Empty Level**. Save it as `L_MainMenu`. This level has no gameplay — it just shows the `WBP_MainMenu` widget. Create a new Blueprint Class with `Actor` as parent, named `BP_MenuManager`. On `Event BeginPlay`, create and show `WBP_MainMenu` using **Create Widget** → **Add to Viewport**. Also set input mode to UI only with **Set Input Mode UI Only** and **Show Mouse Cursor**. Place `BP_MenuManager` in `L_MainMenu`. In **Project Settings > Maps & Modes**, set `L_MainMenu` as the **Default Map** so the game always starts on the menu.",
+            "tip": "Set `L_MainMenu` as Default Map in Project Settings so builds always start at the menu — never at the game level directly."
+          },
+          {
+            "type": "quiz",
+            "q": "Why create a separate `L_MainMenu` level rather than showing the menu widget in the gameplay level?",
+            "opts": [
+              "Widget Blueprints cannot be shown during gameplay",
+              "A dedicated menu level keeps the game and menu cleanly separated — the game level doesn't load until the player chooses to play, saving memory and ensuring the first thing a player sees is the menu, not the game mid-play",
+              "Menu levels load faster than gameplay levels",
+              "Two widgets cannot be shown in the same level simultaneously"
+            ],
+            "ans": 1,
+            "explain": "Mixing menu and gameplay in one level means gameplay systems are loaded and ticking while the player is on the menu, wasting resources. Separate levels enforce clean boundaries: menu level = UI only, gameplay level = game systems. It's also safer — you can't accidentally start playing before pressing Play, and level transitions give a natural loading moment."
+          },
+          {
+            "type": "learn",
+            "title": "Setting Input Mode Correctly",
+            "icon": "🖱️",
+            "body": "When the main menu appears, mouse clicks must reach the UI widgets. In `BP_MenuManager`, after creating and showing the menu widget, call **Set Input Mode UI Only** (Target: Get Player Controller). This directs all input to the UMG widget layer, enabling mouse cursor visibility and button clicks. When the game starts (after pressing PLAY), the game level must switch back to game input. In `BP_Bird`'s `BeginPlay`, call **Set Input Mode Game Only** and **Set Show Mouse Cursor (false)**. Forgetting to switch input modes is one of the most common UMG bugs — clicking Play and finding that the game ignores all keyboard input because the UI mode is still active.",
+            "tip": "Always pair every `Set Input Mode UI Only` with a corresponding `Set Input Mode Game Only` when transitioning to gameplay."
+          },
+          {
+            "type": "quiz",
+            "q": "After pressing PLAY on the main menu and loading the game level, Space Bar doesn't make the bird jump. What is the most likely cause?",
+            "opts": [
+              "The jump input binding was lost during level loading",
+              "Input mode was set to `UI Only` on the menu and never switched back to `Game Only` — keyboard and gamepad events are being consumed by the (now invisible) UI layer instead of reaching the player pawn",
+              "The Bird Blueprint needs to be recompiled after level loading",
+              "Space Bar input requires a separate input mapping context for each level"
+            ],
+            "ans": 1,
+            "explain": "Input mode persists across level loads within a session. If the menu set `UI Only` and the game level doesn't set `Game Only`, all keyboard input continues to route to the UI system even though no visible UI is active. The Space Bar press is swallowed by UMG silently. Always reset input mode at the start of gameplay."
+          }
+        ]
+      },
+      {
+        "id": "12-2",
+        "title": "2. Game Over Screen",
+        "xp": 90,
+        "duration": "Sem 1, Wk 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Creating WBP_GameOver",
+            "icon": "💀",
+            "body": "Create a **Widget Blueprint** named `WBP_GameOver`. In the Designer, add a full-screen semi-transparent dark panel (Image widget, color `#000000` at 60% opacity) to dim the gameplay behind the UI. On top, add a **Vertical Box** with: a **Text** reading `GAME OVER` (font 80, white), a **Text** reading `Score: 0` named `ScoreDisplay`, a **Text** reading `Best: 0` named `HighScoreDisplay`, a **Button** with `PLAY AGAIN` text, and a **Button** with `MENU` text. The dimmed background is a crucial UX pattern — it tells the player the game has paused without obscuring the final game state they see when they died.",
+            "tip": "Use a semi-transparent overlay (not fully opaque) on game over screens so players can briefly see where they died — it adds context to the death."
+          },
+          {
+            "type": "quiz",
+            "q": "Why is a semi-transparent dark overlay placed behind the Game Over text rather than a fully opaque panel?",
+            "opts": [
+              "Fully opaque panels cause rendering errors in UMG",
+              "The semi-transparent overlay lets players briefly see their final game state while clearly communicating that the game has ended — a fully opaque panel would abruptly hide everything, losing the context of where and how they died",
+              "Semi-transparent panels use less memory",
+              "UMG buttons don't work on top of fully opaque backgrounds"
+            ],
+            "ans": 1,
+            "explain": "In game design, context matters at death — seeing your bird fall into a pipe is part of the feedback loop. A semi-transparent overlay preserves this visual context while clearly communicating the game over state. Fully opaque panels feel like a crash or a harsh cut, breaking immersion. This is why virtually every game uses a dimmed-but-visible background for pause/death overlays."
+          },
+          {
+            "type": "learn",
+            "title": "Populating Score on Show",
+            "icon": "📊",
+            "body": "In `WBP_GameOver`'s Graph, add a custom function named `SetScores` that takes two Integer inputs: `FinalScore` and `FinalHighScore`. Inside, convert both to Strings and set `ScoreDisplay` and `HighScoreDisplay` text accordingly. In `BP_Bird`'s `HandleDeath`, after the `Delay`, use **Create Widget** (`WBP_GameOver`), then immediately call `SetScores` on the widget reference, passing the current `Score` and `HighScore` from the Game State. Then call **Add to Viewport**. Calling `SetScores` before `Add to Viewport` ensures the correct scores are shown the instant the widget appears — no flash of zero values.",
+            "tip": "Always populate widget data BEFORE calling `Add to Viewport` to avoid a single-frame flash of empty/default values."
+          },
+          {
+            "type": "quiz",
+            "q": "What visual bug occurs if you call `Add to Viewport` before calling `SetScores` on the Game Over widget?",
+            "opts": [
+              "The widget appears in the wrong screen position",
+              "For one frame (or more on slow devices), the widget shows its default values (Score: 0, Best: 0) before the correct values are set — a visible flash that looks like a bug",
+              "The widget's buttons stop responding to input",
+              "The score text appears behind the background overlay"
+            ],
+            "ans": 1,
+            "explain": "Widgets render the frame they're added to viewport. If data isn't set first, the initial render uses default variable values (0). On fast devices this might be invisible, but on slow devices this zero-flash is clearly visible and looks broken. Setting data first guarantees the very first render has correct values — no flicker."
+          },
+          {
+            "type": "learn",
+            "title": "Play Again and Menu Buttons",
+            "icon": "🔄",
+            "body": "In `WBP_GameOver`, add `OnClicked` events for both buttons. For PLAY AGAIN: call **Open Level by Name** with `L_FlappyBird`. This reloads the entire game level from scratch — all actors re-initialize, score resets to 0, pipes restart. For MENU: call **Open Level by Name** with `L_MainMenu`. Also set **Input Mode UI Only** before showing this widget (call it from `HandleDeath` in `BP_Bird` before creating the Game Over widget). The simplest restart mechanism in UE5 is a full level reload — it's clean, requires no manual reset logic, and guarantees a fresh state. More advanced games use soft resets, but level reload is perfectly appropriate for arcade games.",
+            "tip": "Full level reload is the cleanest restart — zero state management overhead. Only optimize to soft reset when load times become a user experience problem."
+          },
+          {
+            "type": "quiz",
+            "q": "What is the main advantage of restarting the game by reloading the level (`Open Level`) rather than manually resetting all variables?",
+            "opts": [
+              "Open Level is the only Blueprint node that can restart a game",
+              "Level reload guarantees every Actor, variable, and system is in its exact initial state with zero risk of leftover state from the previous run — manual resets are error-prone and will always miss something eventually",
+              "Level reload is faster than manual resets",
+              "Manual resets don't work while a Widget is on screen"
+            ],
+            "ans": 1,
+            "explain": "Manual resets require you to track every single piece of state and reset it explicitly — miss one variable and you have a subtle bug (e.g., score not resetting, dead bird still being dead). Level reload is a nuclear option that guarantees pristine state by letting UE5 rebuild everything from scratch. For a small arcade game with no persistent world state, this is the correct approach. The tiny extra load time is an acceptable tradeoff for zero state bugs."
+          },
+          {
+            "type": "learn",
+            "title": "Score Animation: Pop Effect",
+            "icon": "✨",
+            "body": "To make the score feel exciting, add a pop animation when the score increments. In `WBP_HUD`, select `ScoreText`. In the **Animations** panel (bottom left of UMG Designer), click `+Animation` and name it `ScorePop`. Add a keyframe at time `0.0`: Scale `1.0, 1.0`. At time `0.1`: Scale `1.4, 1.4`. At time `0.2`: Scale `1.0, 1.0`. This creates a quick scale-up-and-back bounce. In `BP_FlappyGameState`, add an **Event Dispatcher** named `OnScoreChanged`. Broadcast it every time `Score` increments. In `WBP_HUD`'s BeginPlay, bind to `OnScoreChanged` and play the `ScorePop` animation using **Play Animation**. Event Dispatchers decouple the score logic from the UI — the Game State doesn't need to know anything about widgets.",
+            "tip": "Event Dispatchers are the correct way for game logic to notify UI — never have game systems directly reference or manipulate widget variables."
+          },
+          {
+            "type": "quiz",
+            "q": "Why use an Event Dispatcher in Game State to notify the HUD of score changes, rather than having Game State directly call a function on the HUD widget?",
+            "opts": [
+              "Event Dispatchers are faster than direct function calls",
+              "Direct references from Game State to HUD create tight coupling — Game State would need to know the HUD exists and hold a reference to it. Event Dispatchers are loosely coupled: Game State just broadcasts an event, and any listener (including multiple HUDs) responds independently",
+              "Game State Blueprints cannot hold references to Widget Blueprints",
+              "Direct function calls don't work across different Blueprint classes"
+            ],
+            "ans": 1,
+            "explain": "If Game State directly calls functions on the HUD, it must hold a reference to the HUD — creating a dependency. If you ever remove the HUD or add a second one, you must update Game State. Event Dispatchers invert this: Game State just shouts 'score changed!' and doesn't care who's listening. The HUD subscribes independently. This loose coupling is fundamental to maintainable game architecture."
+          }
+        ]
+      },
+      {
+        "id": "12-3",
+        "title": "3. Polish & Final Build",
+        "xp": 120,
+        "duration": "Sem 1, Wk 3",
+        "steps": [
+          {
+            "type": "learn",
+            "title": "Adding Background Music",
+            "icon": "🎵",
+            "body": "Import an audio file (MP3 or WAV) by dragging it into the Content Browser — UE5 converts it to a `.uasset` sound wave automatically. Right-click the Sound Wave and select **Create Cue** to generate a `Sound Cue` asset. Open the Sound Cue and add a **Looping** modifier node between the Wave Player and the Output. In `BP_MenuManager`'s BeginPlay, use **Play Sound 2D** with the looping Sound Cue and store the result in a variable `MusicComponent`. When `L_FlappyBird` loads, play a different (faster-paced) music cue. `Play Sound 2D` is used for UI and music because it has no 3D spatial position — the volume doesn't change based on where the camera is, which is correct for background music.",
+            "tip": "Use royalty-free music from sites like OpenGameArt.org or FreeMusicArchive.org for your games to avoid copyright issues."
+          },
+          {
+            "type": "quiz",
+            "q": "Why use `Play Sound 2D` for background music instead of `Play Sound at Location`?",
+            "opts": [
+              "Play Sound 2D is louder than Play Sound at Location",
+              "Background music has no 3D position — it should play at consistent volume regardless of where the camera or player is. `Play Sound at Location` attenuates with distance, making music fade when the camera moves away from its source point",
+              "Play Sound at Location doesn't support looping",
+              "Play Sound 2D loads faster from disk"
+            ],
+            "ans": 1,
+            "explain": "`Play Sound at Location` uses 3D spatial audio — volume decreases as the listener moves away from the source point. If music played from a fixed world location (e.g., 0,0,0), it would fade as the camera moves, which is completely wrong for background music. `Play Sound 2D` bypasses spatial calculation entirely, playing at constant volume everywhere, which is exactly right for music and UI sounds."
+          },
+          {
+            "type": "learn",
+            "title": "Screen Shake on Death",
+            "icon": "📳",
+            "body": "A screen shake on death dramatically improves impact. In UE5, create a Blueprint Class with `CameraShakeBase` as parent, named `BS_DeathShake`. Open it. In the **Details** panel, under **Oscillation**, set **Duration** to `0.4`, **Pitch Amplitude** `5.0`, **Yaw Amplitude** `5.0`, **Frequency** `25`. In `BP_Bird`'s `HandleDeath`, before the Delay, use **Get Player Camera Manager** then **Start Camera Shake** with `BS_DeathShake` and scale `1.0`. The camera shake communicates physical impact through the screen — it's a fundamental technique in every action game. Even subtle shakes (duration 0.3, amplitude 3) dramatically improve the feeling of consequences.",
+            "tip": "Less is more with camera shake — values that feel strong in isolation feel perfectly tuned in context. Start subtle and amplify only if it feels weak."
+          },
+          {
+            "type": "quiz",
+            "q": "What is the primary purpose of a camera shake on death in an arcade game?",
+            "opts": [
+              "It is required for the death animation to play correctly",
+              "It provides physical, tactile-feeling feedback through the screen that communicates impact and consequence — making the death feel weighty rather than just a silent state change",
+              "Camera shake improves rendering performance during transitions",
+              "It prevents the player from seeing the death particle effect too clearly"
+            ],
+            "ans": 1,
+            "explain": "Camera shake is a form of game feel — the collection of audio, visual, and tactile responses that make game events feel satisfying and impactful. Without it, death is a quiet, weightless state change. With it, the player's screen physically reacts to the impact, creating an instinctive emotional response. This is why every game from mobile casual to AAA uses screen shake for impacts."
+          },
+          {
+            "type": "learn",
+            "title": "Mobile Touch Input",
+            "icon": "👆",
+            "body": "The game currently uses Space Bar — which doesn't exist on mobile. In `BP_Bird`, add a second input binding. In `Event Graph`, add a **Event Any Key** node (or add Touch input in Project Settings). Actually the better approach: in **Project Settings > Input**, add a new Action Mapping named `IA_Tap` and bind it to `Touch`. In `BP_Bird`'s BeginPlay, add `IMC_Player`'s `IA_Tap` to the Enhanced Input system alongside `IA_Jump`. In the Event Graph, add an `IA_Tap` event node from its **Started** pin — wire it to the same **Do Once → Set Velocity** jump logic. Now tapping anywhere on the screen in mobile jumps the bird, and Space Bar still works on PC. Both inputs coexist without conflict.",
+            "tip": "Always support both touch AND keyboard in mobile games — testers, designers, and journalists often test on PC even for mobile-only games."
+          },
+          {
+            "type": "quiz",
+            "q": "Why bind `IA_Tap` (Touch) as a separate action rather than replacing the Space Bar binding with Touch?",
+            "opts": [
+              "Touch and keyboard inputs use different Blueprint event types and cannot share a binding",
+              "Keeping both bindings active simultaneously means the game works on both mobile (touch) and PC (keyboard) without needing separate builds or input mode switching — maximum compatibility with zero extra code",
+              "Mobile touch events require a separate Input Mapping Context",
+              "Space Bar binding is automatically removed when a Touch binding is added"
+            ],
+            "ans": 1,
+            "explain": "UE5's Enhanced Input system allows any number of bindings for the same Action across different devices. By keeping Space Bar AND adding Touch to the same IMC, the game automatically works on any device — PC players use keyboard, mobile players tap the screen, and both work in parallel. This cross-platform input compatibility is a professional standard and costs nothing to implement."
+          },
+          {
+            "type": "learn",
+            "title": "Building the APK",
+            "icon": "📦",
+            "body": "Your Flappy Bird clone is complete. To build the final APK: open your project in **Android Studio** via `npx cap open android`. In Android Studio, go to **Build > Generate Signed Bundle / APK**. Select **APK**, click **Next**. If you have no keystore, click **Create new** — fill in a key alias (e.g., `flappy_key`) and password. Android requires a signing key to install APKs on devices. Select `release` build variant and click **Finish**. The APK will be in `android/app/release/`. Transfer it to your device and install with `adb install app-release.apk` or share via Google Drive. This signed APK is suitable for submission to the Google Play Store.",
+            "tip": "Store your keystore file (.jks) safely — you need the same key to update your app on the Play Store. Losing it means publishing a brand new app."
+          },
+          {
+            "type": "quiz",
+            "q": "Why is a signing keystore required to build a release APK, and what happens if you lose the keystore file?",
+            "opts": [
+              "The keystore is only needed for Play Store submissions, not for installing APKs",
+              "The keystore cryptographically identifies you as the app's author — Android uses it to verify updates come from the original developer. Losing it means you cannot publish updates to an existing Play Store listing; you must create an entirely new app entry",
+              "The keystore improves APK load time on Android devices",
+              "Keystores are temporary and a new one is generated automatically for each build"
+            ],
+            "ans": 1,
+            "explain": "Android's signing system is a security mechanism — only the holder of the original keystore can publish updates to an existing app. If you lose it, your app on the Play Store is effectively orphaned: you can't update it, only replace it with a new listing (losing all ratings, reviews, and installs). Always back up your keystore to multiple secure locations. This is one of the most devastating mistakes an indie developer can make."
           }
         ]
       }
     ]
-  },
-  {
-  "id": 10,
-  "track": "Real Projects: Beginner",
-  "title": "Module 10: Flappy Bird Clone",
-  "emoji": "🐦",
-  "color": "#00E5A0",
-  "desc": "Build a complete Flappy Bird clone from scratch, mastering core Unreal Engine 5 concepts like Blueprints, UI, and physics.",
-  "lessons": [
-    {
-      "id": "10-1",
-      "title": "1. Project Setup and Initial Scene",
-      "xp": 50,
-      "duration": "Sem 1, Wk 1",
-      "steps": [
-        {
-          "type": "learn",
-          "title": "New Project Creation",
-          "icon": "✨",
-          "body": "To begin, open the Unreal Engine 5 Editor and select **New Project**. Choose the 'Games' category and then the **Blank** template, as it provides a clean slate without unnecessary starter content, which is ideal for learning from the ground up. Ensure 'Blueprint' is selected for the project type and 'Scalable 3D or 2D' for the quality preset to maintain good performance. Name your project `FlappyBirdClone` and choose a suitable save location before clicking **Create** to generate your new project. Starting with a blank project avoids clutter and allows you to add only the assets and systems you need, fostering a deeper understanding of each component.",
-          "tip": "Always start with a Blank template for new projects to avoid unnecessary asset imports and keep your project clean."
-        },
-        {
-          "type": "quiz",
-          "q": "Why is it recommended to start a project like Flappy Bird with the 'Blank' template instead of 'Third Person' or 'First Person'?",
-          "opts": [
-            "The 'Blank' template includes pre-configured Flappy Bird specific assets.",
-            "It automatically sets up the camera and input for a 2D side-scroller.",
-            "It provides a clean slate, avoiding unwanted starter content and pre-configured systems that might conflict or complicate a custom 2D game.",
-            "The 'Blank' template is the only one that supports Blueprint projects."
-          ],
-          "ans": 2,
-          "explain": "The 'Blank' template is best because it provides a minimal setup, allowing you to build everything specific to your game from scratch without needing to remove or modify existing systems. Starting with a template like 'Third Person' would introduce complex character controllers, animations, and camera setups that are irrelevant to a simple 2D game, leading to confusion and potential conflicts. Choosing the correct template streamlines development and reduces debugging time."
-        },
-        {
-          "type": "learn",
-          "title": "Basic Level Setup",
-          "icon": "🌌",
-          "body": "Upon opening your new project, you'll see a default level with basic elements. For our Flappy Bird game, we need a clean environment. Select and delete the default **Floor**, **Player Start**, **Sky Sphere**, **Atmospheric Fog**, **Volumetric Cloud**, and any other default actors in the **Outliner** panel. Next, go to the **Place Actors** panel (or **Window > Place Actors**) and search for 'Sky'. Drag a **Sky Light** and a **Directional Light** into your scene. These provide basic lighting and environmental reflections, making your scene visible. Without a light source, your level would appear completely black, making it impossible to see any actors you place.",
-          "tip": "Use the 'Outliner' panel (Ctrl+Shift+O) to quickly select and manage all actors in your scene."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the primary reason for adding both a **Sky Light** and a **Directional Light** to a newly created blank level?",
-          "opts": [
-            "Sky Light handles direct sunlight, while Directional Light manages ambient light.",
-            "Directional Light provides direct illumination, while Sky Light captures the distant parts of the level and applies it as ambient light, ensuring objects have some light from all directions.",
-            "They are both necessary for creating volumetric clouds and atmospheric effects.",
-            "Adding both improves game performance by pre-calculating shadows."
-          ],
-          "ans": 1,
-          "explain": "The **Directional Light** simulates a distant light source like the sun, providing strong, direct illumination and casting hard shadows. The **Sky Light** captures the overall lighting from the environment (like the sky) and applies it as ambient light, filling in areas that the Directional Light doesn't directly hit. Without a Sky Light, shadowed areas would be completely black, lacking any realistic ambient bounce light and losing visual depth."
-        },
-        {
-          "type": "learn",
-          "title": "Adding a Ground Plane",
-          "icon": "⛰️",
-          "body": "For our 2D game, we need a simple ground plane to define the bottom boundary of our playable area. In the **Place Actors** panel, search for 'Plane'. Drag a **Plane** Static Mesh Actor into your viewport. Position it at `X=0, Y=0, Z=0` for now. In the **Details** panel, adjust its **Scale** to `X=10, Y=1, Z=1` to make it wide but thin, resembling a long strip of ground. This will be the visual base for our bird and pipes, giving a sense of depth and a clear lower boundary for gameplay. Incorrect scaling could lead to a ground that's too small or too thick, impacting visual consistency.",
-          "tip": "Hold `Alt` and drag an actor to quickly duplicate it, useful for repeating elements like pipes."
-        },
-        {
-          "type": "learn",
-          "title": "Background Visuals",
-          "icon": "🖼️",
-          "body": "To give our game world some visual context, let's add a simple background. Again, from the **Place Actors** panel, search for 'Cube'. Drag a **Cube** Static Mesh Actor into the scene. This cube will serve as a placeholder for our background. Position it at `X=0, Y=0, Z=0` and in the **Details** panel, set its **Scale** to `X=1, Y=10, Z=10`. This creates a large, flat backdrop. Crucially, move its `Y` position to a negative value, such as `Y=-500`, to place it behind our ground plane and future game elements. Without a background, the game would feel empty, lacking visual appeal and immersion. Ensure its scale is large enough to cover the entire play area.",
-          "tip": "Use the 'Right-click' context menu on an actor in the viewport to quickly 'Snap to Ground' or 'Align' it."
-        },
-        {
-          "type": "quiz",
-          "q": "When setting up a background for a 2D side-scroller, why is it important to adjust the background actor's Y-coordinate to a negative value?",
-          "opts": [
-            "To make the background appear in front of the gameplay elements.",
-            "To ensure the background receives proper lighting from the Directional Light.",
-            "To place the background behind the gameplay elements, creating the illusion of depth in a 2D perspective.",
-            "A negative Y-coordinate is a requirement for all Static Mesh Actors in Unreal Engine."
-          ],
-          "ans": 2,
-          "explain": "In Unreal Engine's coordinate system, the Y-axis typically represents depth for a side-scrolling game. Moving the background actor to a negative Y-coordinate effectively pushes it 'backwards' into the scene, behind the player character and obstacles. This creates the visual layering necessary for a 2D game to have depth, making the foreground elements stand out. Placing it at Y=0 or a positive Y value would cause it to overlap or obscure the gameplay elements."
-        },
-        {
-          "type": "learn",
-          "title": "Player Start Placement",
-          "icon": "🏁",
-          "body": "Every game needs a starting point for the player. In the **Place Actors** panel, search for 'Player Start' and drag it into your level. Place the **Player Start** actor somewhere above the ground plane and towards the left side of the scene, for example, at `X=0, Y=0, Z=200`. This actor dictates where the player's camera and character (if one is specified in the Game Mode) will spawn when the game begins. If you don't have a Player Start, the engine will attempt to spawn the player at `0,0,0` or a default location, which might be inside geometry or off-screen, leading to immediate failure or confusion. Correct placement ensures a smooth game start.",
-          "tip": "Always place the Player Start above the ground and in a clear area to prevent players from spawning inside objects."
-        },
-        {
-          "type": "quiz",
-          "q": "What happens if a `PlayerStart` actor is not present in a level when the game begins?",
-          "opts": [
-            "The game will crash due to a missing essential component.",
-            "The player character will automatically spawn at the last saved location.",
-            "The engine will attempt to spawn the player at a default location, often `(0,0,0)`, which could lead to spawning inside geometry or off-screen, causing immediate game failure.",
-            "The game will automatically generate a new `PlayerStart` at a random valid location."
-          ],
-          "ans": 2,
-          "explain": "Without a `PlayerStart` actor, Unreal Engine doesn't have an explicit instruction on where to place the player's pawn or camera. It defaults to `(0,0,0)`, which is often inside the ground or other level geometry, leading to the player falling through the world or being stuck. This results in a poor user experience and requires the developer to manually restart or debug the issue. Properly placing a `PlayerStart` is crucial for reliable game initialization."
-        },
-        {
-          "type": "learn",
-          "title": "Saving Your Work",
-          "icon": "💾",
-          "body": "It's crucial to save your progress frequently to avoid losing work. In the Unreal Editor, go to **File > Save Current Level As...** and name your level `L_FlappyBird`. Then, go to **File > Save All** to ensure all changes to your level, blueprints, and other assets are saved to disk. This action saves not just the level, but any new assets or modifications you've made to existing assets. Failing to save can lead to hours of lost work if the editor crashes or if you close it accidentally, which is a common and frustrating mistake for beginners. Make saving a habit after any significant change.",
-          "tip": "Use `Ctrl+S` (Save Current Level) and `Ctrl+Shift+S` (Save All) for quick saving shortcuts."
-        },
-        {
-          "type": "learn",
-          "title": "Setting Default Game Mode",
-          "icon": "⚙️",
-          "body": "The **Game Mode** is a fundamental class in Unreal Engine that defines the rules of your game, including the default pawn class, player controller, HUD, and game state. To set up our game mode, first, we need to create one. Right-click in the **Content Browser** (preferably in a `Blueprints` folder) and select **Blueprint Class**. Search for and select `GameModeBase` as the parent class, naming it `BP_FlappyBirdGameMode`. Now, go to **Edit > Project Settings**, navigate to **Maps & Modes**, and set your `BP_FlappyBirdGameMode` as the **Default GameMode** under 'Default Modes'. This ensures your custom game rules are applied when the game starts, overriding the default editor settings. Without a custom Game Mode, you can't define your unique player character or game rules, leading to the engine using generic defaults.",
-          "tip": "Always create a dedicated `Blueprints` folder in your `Content` directory for better organization."
-        },
-        {
-          "type": "quiz",
-          "q": "Why is it essential to set a custom `GameModeBase` (e.g., `BP_FlappyBirdGameMode`) as the **Default GameMode** in **Project Settings**?",
-          "opts": [
-            "It's purely for organizational purposes and has no effect on gameplay.",
-            "The `GameModeBase` automatically handles all level loading and saving.",
-            "It defines the rules of the game, including which player character Blueprint to use, which HUD to display, and other core game logic, ensuring your custom game setup is active when the game runs.",
-            "Setting a default GameMode improves editor performance and stability."
-          ],
-          "ans": 2,
-          "explain": "The `GameModeBase` is the central hub for defining your game's rules and default classes. By setting a custom `GameModeBase` as the default, you instruct Unreal Engine to use your specific configurations for things like the player pawn, controller, and HUD. If you don't set a custom Game Mode, the engine will use its generic defaults, which won't match your game's requirements and will prevent your custom systems (like the bird character) from being used correctly. This step is foundational for implementing specific game logic."
-        }
-      ]
-    },
-    {
-      "id": "10-2",
-      "title": "2. Player Character (Bird) Blueprint",
-      "xp": 80,
-      "duration": "Sem 1, Wk 1",
-      "steps": [
-        {
-          "type": "learn",
-          "title": "Creating the Bird Blueprint",
-          "icon": "🐦",
-          "body": "Our player character, the bird, will be a Blueprint Actor. In the **Content Browser**, right-click and select **Blueprint Class**. Choose `Pawn` as the parent class, as `Pawn` is a basic actor that can be possessed by a controller, perfect for our simple bird. Name it `BP_Bird` and open it. Inside, click **Add Component** and add a **Static Mesh** component, naming it `BirdMesh`. This will serve as the visual representation of our bird. Initially, assign a basic `Cube` mesh from the `Engine Content` to `BirdMesh` in the **Details** panel under **Static Mesh**, as a placeholder. Without this, our bird would be invisible, making debugging difficult.",
-          "tip": "Always organize your Blueprints in dedicated folders (e.g., `Content/Blueprints/Characters`) for better project management."
-        },
-        {
-          "type": "quiz",
-          "q": "Why is `Pawn` chosen as the parent class for `BP_Bird` instead of `Actor` or `Character`?",
-          "opts": [
-            "`Actor` is too complex for a simple player character.",
-            "`Character` includes built-in movement components designed for bipedal characters, which are unnecessary and potentially problematic for a flying bird, while `Pawn` is a more basic class suitable for any possessable entity.",
-            "`Pawn` automatically handles all physics simulations for flying objects.",
-            "`Pawn` is the only class that can have a `StaticMesh` component."
-          ],
-          "ans": 1,
-          "explain": "`Character` is a specialized `Pawn` designed for humanoid or bipedal characters, coming with complex movement components like `CharacterMovementComponent`. For a flying bird, these are overkill and can interfere with custom movement logic. `Pawn` is a more fundamental class that can be possessed by a controller and provides a clean slate for implementing custom movement, making it ideal for our bird. `Actor` cannot be possessed, so it's not suitable for a player-controlled entity."
-        },
-        {
-          "type": "learn",
-          "title": "Adding Collision Component",
-          "icon": "💥",
-          "body": "For the bird to interact with the world and detect collisions, we need a collision component. With `BP_Bird` open, click **Add Component** and search for **Sphere Collision**. Name it `CollisionSphere`. In the **Details** panel, set its **Sphere Radius** to `32` to roughly encompass our placeholder cube mesh. Ensure `CollisionSphere` is the root component by dragging it onto the `Default Scene Root` in the **Components** panel, and then attach `BirdMesh` to `CollisionSphere`. This setup ensures that the sphere handles all physics and collision events for the bird, as the mesh itself usually has simpler collision. Incorrect collision size can lead to unfair hits or misses.",
-          "tip": "Always make sure your primary collision component is the root component for consistent physics behavior."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the importance of making the `CollisionSphere` the root component and attaching `BirdMesh` to it?",
-          "opts": [
-            "It allows the `BirdMesh` to inherit the visual properties of the `CollisionSphere`.",
-            "This setup ensures that all physics calculations and collision detections are based on the `CollisionSphere`'s properties, providing a consistent and predictable interaction point for the entire `BP_Bird` actor.",
-            "It prevents the `BirdMesh` from being rendered in the game world.",
-            "Making `CollisionSphere` the root component is only necessary for networked multiplayer games."
-          ],
-          "ans": 1,
-          "explain": "By making `CollisionSphere` the root component, we establish it as the primary physical representation of the `BP_Bird` actor. All transformations (position, rotation, scale) and physics interactions for the entire actor will then be driven by this sphere. Attaching `BirdMesh` ensures it visually follows the `CollisionSphere`. This setup simplifies collision logic, as you only need to check against the sphere, and prevents issues where the visual mesh might pass through objects without triggering a hit if its own collision settings are complex or incorrect."
-        },
-        {
-          "type": "learn",
-          "title": "Adding Projectile Movement",
-          "icon": "🚀",
-          "body": "To give our bird physical movement, including gravity and impulse-based jumps, we will use a **Projectile Movement Component**. With `BP_Bird` open, click **Add Component** and search for **Projectile Movement**. Name it `BirdMovement`. Select `BirdMovement` in the **Components** panel. In the **Details** panel, enable **Should Bounce** to `false` and set **Gravity Scale** to `1.0` to simulate standard gravity. Crucially, set **Initial Speed** and **Max Speed** to `0` for now, as we'll apply force directly. This component provides built-in physics simulation for objects, simplifying the implementation of gravity and forces without needing to manually calculate velocities every frame. Forgetting to set `Gravity Scale` will make the bird float indefinitely.",
-          "tip": "The `Projectile Movement Component` is excellent for objects that need consistent physics behavior like projectiles, or in this case, a gravity-affected bird."
-        },
-        {
-          "type": "learn",
-          "title": "Setting Default Pawn Class",
-          "icon": "🕹️",
-          "body": "Now that we have `BP_Bird`, we need to tell our `BP_FlappyBirdGameMode` to use it as the player character. Open `BP_FlappyBirdGameMode`. In the **Details** panel, locate the **Classes** section. Under **Default Pawn Class**, click the dropdown and select `BP_Bird`. Compile and Save `BP_FlappyBirdGameMode`. This step is critical because it tells the game which Blueprint to spawn and possess when a player joins the game. Without this, the game would try to spawn a generic pawn, or nothing at all, resulting in no player character appearing in the level. This connection is how your custom player character becomes playable.",
-          "tip": "Always compile and save Blueprints after making changes, especially when setting class defaults."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the direct consequence of NOT setting `BP_Bird` as the **Default Pawn Class** in `BP_FlappyBirdGameMode`?",
-          "opts": [
-            "The `BP_Bird` will still appear, but its physics will not work.",
-            "The game will crash upon launching due to a missing pawn.",
-            "The engine will spawn a generic default pawn (or no pawn at all) instead of `BP_Bird` when the game starts, meaning your custom bird character will not be present or playable in the level.",
-            "The game will automatically select the first `Pawn` Blueprint it finds in the `Content Browser`."
-          ],
-          "ans": 2,
-          "explain": "If `BP_Bird` is not set as the **Default Pawn Class**, the `GameMode` won't know to spawn your custom bird character. Instead, it will fall back to a generic default pawn or simply not spawn any player-controlled entity. This means when you press 'Play', you won't see your `BP_Bird` in the level, and you won't be able to control anything. This is a common oversight that prevents the player character from appearing in the game world, making it unplayable."
-        },
-        {
-          "type": "learn",
-          "title": "Setting Up Input Actions",
-          "icon": "👆",
-          "body": "For the bird to jump, we need to define an input action. Go to **Edit > Project Settings**, then navigate to **Input** under the 'Engine' section. Expand **Input Actions** and click `+` to add a new one. Name it `IA_Jump`. This defines a conceptual action that our bird will perform. Next, under **Input Mappings**, click `+` next to 'Contexts' to add a new **Input Mapping Context** (IMC). Name it `IMC_Player`. Inside `IMC_Player`, click `+` to add a mapping. Select `IA_Jump` for the 'Action' and choose `Space Bar` for the 'Key'. This links the physical keyboard input to our abstract `IA_Jump` action. These input actions are the modern way to handle input in UE5, offering more flexibility than older systems. Incorrectly mapping inputs will mean the bird cannot jump.",
-          "tip": "Always use **Input Actions** and **Input Mapping Contexts** in UE5 for robust and flexible input handling."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the primary benefit of using **Input Actions** and **Input Mapping Contexts** over older input methods like 'Action Mappings' in UE5?",
-          "opts": [
-            "They only work with gamepads, not keyboards.",
-            "They automatically generate UI elements for input prompts.",
-            "They provide a more modular and flexible system for input handling, allowing easy remapping, contextual inputs, and better support for different device types without modifying Blueprints.",
-            "They are exclusive to C++ projects and cannot be used with Blueprints."
-          ],
-          "ans": 2,
-          "explain": "Input Actions and Mapping Contexts offer significant advantages by decoupling the input event from the specific key or button. This modularity allows developers to easily remap controls, create different input contexts (e.g., 'driving mode' vs. 'on-foot mode'), and support various input devices without changing core Blueprint logic. The older 'Action Mappings' were less flexible, requiring direct manipulation of project settings for every binding, which could become cumbersome in larger projects. This modern system promotes cleaner design and easier iteration."
-        },
-        {
-          "type": "learn",
-          "title": "Binding Input in Bird Blueprint",
-          "icon": "🔗",
-          "body": "Now we need to make `BP_Bird` respond to our `IA_Jump` input. Open `BP_Bird`. In the **Event Graph**, right-click and search for `Enhanced Input`. Select **Input Action: IA_Jump**. This creates an event node that fires when `IA_Jump` is triggered. Before this, we need to enable input. Drag off `Event BeginPlay`, search for **Get Player Controller**, then drag off its output and search for **Enhanced Input Local Player Subsystem**. Connect its output to **Add Mapping Context**. For the **Input Mapping Context** pin, select `IMC_Player` from the dropdown. Connect the `Return Value` of **Add Mapping Context** to the `Target` pin of **Set Input Mode Game Only**. This ensures our Blueprint actively listens for input from `IMC_Player` when the game starts. Without adding the mapping context, the `IA_Jump` event would never fire, and the bird wouldn't respond to player input.",
-          "tip": "Always ensure your `Input Mapping Context` is added to the `Enhanced Input Local Player Subsystem` during `BeginPlay` for the player controller."
-        },
-        {
-          "type": "learn",
-          "title": "Applying Jump Impulse",
-          "icon": "⬆️",
-          "body": "With the input bound, we can now make the bird jump. From the **Triggered** execution pin of the `IA_Jump` event node in `BP_Bird`, drag off and search for `Set Velocity`. The `Target` for this node should be our `BirdMovement` component. For the `New Velocity` input, we want to set the Z-component of velocity to a positive value to make the bird move upwards. For example, set `Z` to `500`. This directly modifies the bird's upward speed. We also need to ensure that the bird's previous upward velocity is reset, so it doesn't just add to existing speed, leading to excessively high jumps. This simple `Set Velocity` node provides immediate control over the bird's vertical movement, creating the core jump mechanic. If the Z-value is too low, the bird won't jump high enough, too high, and it will be uncontrollable.",
-          "tip": "Experiment with the `Set Velocity` Z-value to find the perfect jump height for your game's feel."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the primary reason for using `Set Velocity` on the `ProjectileMovement` component for the bird's jump, rather than `Add Impulse`?",
-          "opts": [
-            "`Add Impulse` is only for static meshes, not pawns.",
-            "`Set Velocity` provides immediate and precise control over the bird's new upward speed, overriding any existing vertical velocity, which is crucial for consistent jump height in a Flappy Bird style game. `Add Impulse` would add to the current velocity, making jumps inconsistent.",
-            "`Set Velocity` is more performant than `Add Impulse` for continuous movement.",
-            "Using `Set Velocity` automatically handles gravity, while `Add Impulse` does not."
-          ],
-          "ans": 1,
-          "explain": "While `Add Impulse` applies a one-time force, `Set Velocity` directly sets the object's speed to a specific value. For a Flappy Bird jump, you want a consistent jump height regardless of the bird's current falling speed. `Set Velocity` achieves this by immediately changing the Z-velocity to `500` (or your chosen value), effectively 'snapping' the bird to a new upward trajectory. `Add Impulse` would simply add to the current velocity, meaning a jump from a high fall would be much higher than a jump from a low fall, making the game feel inconsistent and harder to control. `Set Velocity` ensures a predictable and responsive jump."
-        }
-      ]
-    },
-    {
-      "id": "10-3",
-      "title": "3. Bird Movement: Gravity & Jump Input",
-      "xp": 90,
-      "duration": "Sem 1, Wk 1",
-      "steps": [
-        {
-          "type": "learn",
-          "title": "Testing Initial Bird Movement",
-          "icon": "▶️",
-          "body": "Before moving on, let's test our current setup. Ensure `BP_Bird` is set as the Default Pawn Class in your `BP_FlappyBirdGameMode`. Place a `PlayerStart` in your level. Click the **Play** button in the editor toolbar. You should see your cube-shaped bird appear at the `PlayerStart` location. The bird should immediately start falling due to gravity, controlled by the `Projectile Movement Component`. Pressing the `Space Bar` should cause the bird to jump upwards. If the bird doesn't fall, check the `Gravity Scale` on `BirdMovement`. If it doesn't jump, double-check your `Input Action` bindings and the `Set Velocity` node. This initial test validates our core physics and input systems, ensuring the bird behaves as expected. Without verifying, further development might build upon a faulty foundation.",
-          "tip": "Use `Alt+P` to quickly start Play In Editor (PIE) mode and `Esc` to stop."
-        },
-        {
-          "type": "quiz",
-          "q": "If, during testing, the `BP_Bird` appears but does not fall, what is the most likely cause?",
-          "opts": [
-            "The `BirdMesh` component is not set to `Simulate Physics`.",
-            "The `Gravity Scale` on the `BirdMovement` (Projectile Movement Component) is set to `0.0`.",
-            "The `PlayerStart` actor is placed too high above the ground.",
-            "The `IA_Jump` input action is not properly bound."
-          ],
-          "ans": 1,
-          "explain": "The `Projectile Movement Component` handles the bird's physics, including gravity. If the `Gravity Scale` is set to `0.0` in the **Details** panel of the `BirdMovement` component, the bird will not experience any downward force and will simply float. While `Simulate Physics` on the `BirdMesh` can also affect movement, the `Projectile Movement Component` specifically manages the gravity for the entire actor. Incorrect input binding would prevent jumping, not falling. A high `PlayerStart` would just mean a longer fall."
-        },
-        {
-          "type": "learn",
-          "title": "Clamping Vertical Position",
-          "icon": "📏",
-          "body": "A Flappy Bird clone needs to prevent the bird from flying too high or falling too far down. To achieve this, we'll clamp its Z-position. In `BP_Bird`, add an `Event Tick` node. From `Event Tick`, drag off and get a reference to `Self` (the bird actor). Drag off `Self` and search for **Get Actor Location**. Break the `Vector` to access the `Z` component. Drag the `Z` pin and connect it to a **Clamp (float)** node. Set **Min** to a value like `100` (to keep it above ground) and **Max** to `1000` (to prevent flying off-screen upwards). After clamping, make a `Vector` from `X` (from `Get Actor Location`), `Y` (from `Get Actor Location`), and the clamped `Z` value. Finally, use **Set Actor Location** (Target: `Self`) with the new vector. This ensures the bird always stays within the defined vertical boundaries, preventing it from leaving the playable area. Forgetting to clamp can lead to the bird disappearing off-screen.",
-          "tip": "Use a `Sequence` node after `Event Tick` to keep your Blueprint graph organized when performing multiple actions per frame."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the primary purpose of clamping the bird's Z-position using a `Clamp (float)` node?",
-          "opts": [
-            "To prevent the bird from rotating uncontrollably.",
-            "To ensure the bird remains within the vertical boundaries of the playable screen, preventing it from flying too high or falling too low out of sight.",
-            "To adjust the bird's horizontal movement speed.",
-            "To make the bird's movement smoother and less jerky."
-          ],
-          "ans": 1,
-          "explain": "Clamping the Z-position is crucial for maintaining the playable area in a Flappy Bird game. Without it, the bird could fly indefinitely upwards or fall far below the ground, making the game unplayable. The `Clamp (float)` node restricts the Z-coordinate to a specified minimum and maximum range, ensuring the bird always stays visible and within the game's vertical limits. This directly affects gameplay by defining the boundaries of the player's interaction space and preventing game-breaking scenarios."
-        },
-        {
-          "type": "learn",
-          "title": "Implementing Initial Horizontal Movement",
-          "icon": "➡️",
-          "body": "While the bird itself won't move horizontally relative to the camera, the world will scroll past it. However, we can simulate this by giving the bird a constant forward velocity, which will be matched by the camera later. In `BP_Bird`, on `Event Tick`, after the Z-clamping logic, get a reference to `BirdMovement`. Drag off and search for **Set Velocity**. This time, we'll set the `X` component of the `New Velocity`. Take the `Z` component from the `Projectile Movement Component`'s current velocity (get `Current Velocity` from `BirdMovement`, then `Break Vector`). Set the `X` component to a constant value, like `200`, and reconnect the `Z` component from the previous velocity. This creates a constant rightward movement. The `Y` component should remain `0`. This constant velocity is crucial for the pipes to appear to scroll towards the bird, creating the illusion of forward progress. Incorrect X velocity will make the game feel too fast or too slow.",
-          "tip": "Use `Print String` nodes (F9 to toggle breakpoint) to debug velocity values during gameplay."
-        },
-        {
-          "type": "learn",
-          "title": "Controlling Bird Rotation on Y-Axis",
-          "icon": "↩️",
-          "body": "To make the bird look more dynamic, we'll have it slightly rotate based on its vertical velocity. In `BP_Bird`, on `Event Tick`, get a reference to `BirdMovement`. Drag off and use **Get Velocity**. Break the `Vector` to get the `Z` component (vertical velocity). We want to map this `Z` velocity to a rotation angle. Use a **Map Range Clamped** node. Input `Z` velocity to `Value`. Set `In Range A` to `-500` and `In Range B` to `500` (these are example min/max expected velocities). Set `Out Range A` to `30` and `Out Range B` to `-30`. This maps a downward velocity to a positive pitch (nose down) and an upward velocity to a negative pitch (nose up). Then, use a **Set Relative Rotation** node (Target: `BirdMesh`). Connect the output of `Map Range Clamped` to the `New Rotation`'s `Pitch (Y)` pin. This visual feedback enhances the player's understanding of the bird's movement. If the mapping is incorrect, the bird might rotate in the wrong direction or too aggressively.",
-          "tip": "Use `Map Range Clamped` to easily translate one range of values to another, perfect for visual effects like rotation based on speed."
-        },
-        {
-          "type": "quiz",
-          "q": "Why is it important to use **Map Range Clamped** when rotating the bird based on its vertical velocity?",
-          "opts": [
-            "It is required for all rotation operations in Unreal Engine.",
-            "It smooths out the rotation over time, making it less jerky.",
-            "It translates a potentially wide range of vertical velocity values into a controlled and aesthetically pleasing range of rotation angles, preventing extreme or inverted rotations and ensuring consistent visual feedback.",
-            "It automatically detects the bird's current rotation and adjusts it proportionally."
-          ],
-          "ans": 2,
-          "explain": "The bird's vertical velocity can vary significantly, from high positive (after a jump) to high negative (during a long fall). Without `Map Range Clamped`, directly using this velocity to drive rotation would result in extreme, unrealistic, or even inverted rotations. `Map Range Clamped` allows you to define a specific input range (e.g., -500 to 500 velocity) and map it to a desired output range (e.g., 30 to -30 degrees of pitch), ensuring the rotation remains within visually appealing and controlled limits, providing consistent and understandable visual feedback to the player about the bird's trajectory."
-        },
-        {
-          "type": "learn",
-          "title": "Refining Jump Input: Single Press",
-          "icon": "☝️",
-          "body": "Currently, holding down the Space Bar might result in multiple rapid jumps. We want a single jump per press. In `BP_Bird`, modify the `IA_Jump` event. Instead of connecting `Triggered` directly to `Set Velocity`, connect `Started`. This ensures the jump only registers on the initial press. Additionally, to prevent accidental double-jumps, we can add a small delay or a `Do Once` node. Drag off `Started`, add a **Do Once** node. Connect `Do Once` to `Set Velocity`. After `Set Velocity`, add a **Delay** node (e.g., `0.2` seconds). Connect the `Completed` pin of the `Delay` to the `Reset` pin of the `Do Once` node. This setup ensures that `Set Velocity` is only called once per button press, and it can't be called again until a brief cooldown period has passed, making the jump more deliberate. Without this, players could exploit rapid presses, leading to an unfair advantage or unintended behavior.",
-          "tip": "Use `Do Once` nodes with a `Delay` and `Reset` for single-press actions with a cooldown."
-        },
-        {
-          "type": "quiz",
-          "q": "Why is using a `Do Once` node with a `Delay` and `Reset` crucial for the `IA_Jump` event?",
-          "opts": [
-            "It automatically adjusts the jump height based on how long the key is held.",
-            "It allows the bird to perform multiple jumps in quick succession for advanced maneuvers.",
-            "It ensures that a jump action is triggered only once per key press, preventing rapid-fire or unintended multiple jumps, and introduces a brief cooldown before another jump can be registered, making gameplay more consistent.",
-            "It is a performance optimization that reduces the number of calculations per frame."
-          ],
-          "ans": 2,
-          "explain": "The `Do Once` node ensures that the `Set Velocity` action is executed only a single time when `IA_Jump` is `Started`. Without it, holding the jump key could trigger the jump action repeatedly, leading to uncontrollable rapid jumps. The `Delay` and `Reset` part of the setup then introduces a small cooldown period before the `Do Once` node can be re-triggered, preventing accidental double-taps or 'spamming' the jump button. This makes the jump mechanic feel more deliberate and consistent, which is vital for precise gameplay in Flappy Bird."
-        },
-        {
-          "type": "learn",
-          "title": "Visualizing Collision Bounds",
-          "icon": "🔍",
-          "body": "It's often helpful to visualize the bird's collision sphere during development. In `BP_Bird`, select the `CollisionSphere` component in the **Components** panel. In the **Details** panel, under **Rendering**, ensure **Hidden in Game** is unchecked. While this will make the sphere visible during gameplay, it's invaluable for debugging collision issues. Once satisfied, you can re-check **Hidden in Game**. Alternatively, you can use the `Show Collision` console command during PIE by pressing `~` to open the console and typing `Show Collision`. This toggle allows you to see all collision bounds in the game, which is incredibly useful for verifying that your collision volumes match your expectations and are correctly positioned relative to the bird's mesh. Misaligned collision can lead to frustrating 'phantom' hits or misses for the player.",
-          "tip": "Use the `Show Collision` console command (and `Show Collision` again to hide) during PIE for quick debugging of collision bounds."
-        },
-        {
-          "type": "learn",
-          "title": "Saving and Compiling Bird Blueprint",
-          "icon": "💾",
-          "body": "After all these changes, it's essential to compile and save `BP_Bird`. Click the **Compile** button in the Blueprint Editor toolbar to check for any errors and apply your changes. Then click **Save**. Regularly compiling and saving ensures that your Blueprint logic is up-to-date and stored persistently. If you close the editor without saving, all your hard work on the bird's movement and input will be lost, forcing you to re-implement everything. Compiling also helps catch syntax errors or broken connections in your graph, providing immediate feedback on potential issues. Make it a habit to compile and save after every significant change to avoid headaches down the line.",
-          "tip": "Always compile and save Blueprints after making changes; a red asterisk on the tab means unsaved changes."
-        },
-        {
-          "type": "quiz",
-          "q": "Why is it important to compile a Blueprint after making changes, even if you've already saved it?",
-          "opts": [
-            "Compiling only affects the visual appearance of the Blueprint, not its functionality.",
-            "Saving automatically compiles the Blueprint, so it's a redundant step.",
-            "Compiling processes the Blueprint's visual graph into executable code, checking for errors and applying changes so they can take effect in the game. Without compiling, saved changes might not be active when you play.",
-            "Compiling is only necessary for C++ projects, not Blueprint projects."
-          ],
-          "ans": 2,
-          "explain": "While saving stores the Blueprint's data to disk, compiling is the process that translates the visual nodes and connections into functional code that the engine can execute. If you save but don't compile, your changes might not be active when you test the game or when other Blueprints try to reference the updated logic. Compiling also performs error checking, alerting you to any issues in your graph before runtime. Therefore, both compiling and saving are crucial steps to ensure your Blueprint changes are active and error-free."
-        }
-      ]
-    },
-    {
-      "id": "10-4",
-      "title": "4. Bird Rotation for Visual Feedback",
-      "xp": 90,
-      "duration": "Sem 1, Wk 1",
-      "steps": [
-        {
-          "type": "learn",
-          "title": "Refining Pitch Rotation",
-          "icon": "🔄",
-          "body": "In the previous lesson, we implemented basic pitch rotation based on vertical velocity. Let's refine it for a smoother, more realistic feel. Open `BP_Bird`. In the `Event Tick` graph, locate your `Map Range Clamped` node connected to `Set Relative Rotation` for `BirdMesh`. Instead of directly setting the rotation, we'll use a **RInterp To** node. Get the current relative rotation of `BirdMesh` using **Get Relative Rotation**. Break this `Rotator` to get the `Y` (Pitch). Connect the `Map Range Clamped` output to the `Target` pin of **RInterp To**. Connect the current `Pitch` to the `Current` pin. Set `Interp Speed` to `8.0` (or experiment). Connect `Get World Delta Seconds` to the `Delta Time` pin. Make a new `Rotator` with `X` and `Z` as `0` and `Y` from `RInterp To`. Connect this to `Set Relative Rotation`. This interpolation makes the rotation animate smoothly rather than snapping instantly, greatly improving the visual quality. A low `Interp Speed` will make the rotation sluggish, while a high one will make it nearly instant.",
-          "tip": "Use `Interp To` nodes for smooth transitions of any value (float, vector, rotator) over time."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the primary benefit of using `RInterp To` for the bird's pitch rotation instead of directly setting the rotation from `Map Range Clamped`?",
-          "opts": [
-            "`RInterp To` is more performant for continuous rotation.",
-            "It allows the bird to rotate on all axes simultaneously.",
-            "`RInterp To` smoothly interpolates the bird's rotation from its current state to the target rotation over time, creating a more natural and visually appealing animation rather than an instant, jarring snap.",
-            "`RInterp To` automatically adjusts the bird's collision based on its rotation."
-          ],
-          "ans": 2,
-          "explain": "Directly setting the rotation from `Map Range Clamped` would cause the bird to instantly snap to the new rotation value, which looks unnatural and robotic. `RInterp To` (Rotator Interpolation To) smoothly transitions the `BirdMesh`'s rotation from its current pitch to the target pitch calculated by `Map Range Clamped` over multiple frames. This creates a much more fluid and organic-looking rotation, enhancing the visual feedback and overall polish of the game. The `Interp Speed` controls how quickly this transition occurs, allowing you to fine-tune the feel."
-        },
-        {
-          "type": "learn",
-          "title": "Adding Roll Rotation for Banking",
-          "icon": "✈️",
-          "body": "To enhance the sense of movement, let's add a subtle roll (Z-axis rotation) when the bird changes vertical direction. In `BP_Bird`, on `Event Tick`, get the `Z` velocity from `BirdMovement` (as before). Use another `Map Range Clamped` node. Input `Z` velocity to `Value`. Set `In Range A` to `-500` and `In Range B` to `500`. Set `Out Range A` to `20` and `Out Range B` to `-20`. This maps upward velocity to a slight negative roll (banking left) and downward velocity to a slight positive roll (banking right). Combine this with the interpolated pitch. In the `RInterp To` output `Rotator`, add this new roll value to the `Roll (Z)` pin. This subtle banking effect when the bird changes direction adds a lot of character and visual responsiveness, making the bird feel more like it's actively flying. If the `Out Range` values are too high, the bird will roll excessively, looking unrealistic.",
-          "tip": "Subtle visual cues like roll and pitch rotation significantly improve the player's perception of control and immersion."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the primary reason for adding a roll (Z-axis rotation) to the bird's movement based on vertical velocity?",
-          "opts": [
-            "It is required for the bird to accelerate horizontally.",
-            "It is a game mechanic that allows the player to perform barrel rolls.",
-            "It provides additional visual feedback, making the bird appear to 'bank' or lean into its turns, enhancing the sense of dynamic flight and responsiveness to vertical changes.",
-            "It is necessary for the bird's collision detection to function correctly."
-          ],
-          "ans": 2,
-          "explain": "Adding roll rotation, even subtly, based on vertical velocity greatly enhances the visual realism and dynamic feel of the bird's flight. When the bird flies up, a slight negative roll (leaning left) can simulate it 'banking' into the upward movement, and a positive roll (leaning right) for downward movement. This visual cue makes the bird feel more alive and responsive to its changes in vertical trajectory, providing a richer experience than just simple pitch changes. It's an aesthetic enhancement that improves immersion and visual feedback."
-        },
-        {
-          "type": "learn",
-          "title": "Limiting Angular Velocity",
-          "icon": "🚫",
-          "body": "While `RInterp To` smooths rotation, sometimes rapid changes in velocity can still cause janky behavior, especially if the `Interp Speed` is too high. To prevent the bird from spinning out of control or instantly snapping to extreme angles, we can limit its angular velocity. In `BP_Bird`, select the `BirdMovement` component. In the **Details** panel, under **Physics**, you'll find **Angular Damping** and **Max Angular Velocity**. While `Projectile Movement Component` typically handles its own rotation, if you were using regular `Simulate Physics` on the mesh, these values would be crucial. For our `Projectile Movement Component`, ensure `Rotation Follows Velocity` is `false` (as we're controlling it manually). We are handling rotation directly, so `Angular Damping` on the mesh isn't as critical, but it's good to be aware of its purpose for other physics-driven actors. The `RInterp To` node already acts as a form of angular velocity limit by smoothing the transition, making this less of a concern for our specific setup.",
-          "tip": "For full physics-driven rotations, adjust `Angular Damping` and `Max Angular Velocity` on the `Static Mesh` component."
-        },
-        {
-          "type": "learn",
-          "title": "Testing Combined Rotations",
-          "icon": "✅",
-          "body": "With both pitch and roll rotations implemented and smoothed, it's time for another test. Click **Compile** and **Save** `BP_Bird`. Then, press **Play** in the editor. Observe your bird as it falls and jumps. It should now smoothly pitch its nose up when jumping and down when falling. Additionally, it should exhibit a subtle banking (rolling) motion as it changes vertical direction. Pay close attention to how natural the rotation feels. If it's too fast, reduce the `Interp Speed` on `RInterp To`. If the roll is too extreme, adjust the `Out Range` values in the `Map Range Clamped` node for roll. This iterative testing helps you fine-tune the feel and responsiveness of the bird's movement, which is critical for a satisfying gameplay experience. Incorrect rotation can make the bird feel unresponsive or look awkward.",
-          "tip": "Record gameplay (using the 'High-Quality Media Export' tool under 'Cinematics') to analyze subtle movements frame by frame."
-        },
-        {
-          "type": "quiz",
-          "q": "If the bird's roll rotation appears too extreme or unnatural during gameplay, which specific Blueprint node or value should be adjusted?",
-          "opts": [
-            "The `Gravity Scale` on the `BirdMovement` component.",
-            "The `Interp Speed` on the `RInterp To` node for pitch.",
-            "The `Out Range A` and `Out Range B` values on the `Map Range Clamped` node responsible for the roll (Z-axis) rotation.",
-            "The `Set Velocity` node's Z-value for the jump impulse."
-          ],
-          "ans": 2,
-          "explain": "The `Map Range Clamped` node is responsible for translating the bird's vertical velocity into a specific range of roll angles. If the roll is too extreme, it means the `Out Range A` and `Out Range B` values, which define the maximum and minimum roll angles, are set too high. Adjusting these values to a smaller range (e.g., from `20` to `10` degrees) will reduce the intensity of the roll. The `Interp Speed` for pitch affects how smoothly the pitch changes, not the roll intensity itself, and `Gravity Scale` and `Set Velocity` affect movement, not rotation magnitude."
-        },
-        {
-          "type": "learn",
-          "title": "Camera Follow for Bird",
-          "icon": "🎥",
-          "body": "To ensure the bird is always in view, we need a camera that follows it. In `BP_Bird`, click **Add Component** and search for **Spring Arm**. Name it `CameraBoom`. Attach `CameraBoom` to `CollisionSphere`. Select `CameraBoom`, and in the **Details** panel, set its `Target Arm Length` to `500` and `Rotation Lag` to `3.0`. This makes the camera smoothly follow the bird with a slight delay. Next, add another component: **Camera**. Attach the `Camera` component to `CameraBoom`. Select the `Camera` and in its **Details** panel, ensure **Use Pawn Control Rotation** is unchecked, and adjust its `Relative Rotation` to `Y=-90` (to face the scene) and `X=0, Z=0`. This setup creates a smooth, trailing camera effect, essential for a side-scrolling game. A camera that snaps instantly can be jarring, while too much lag can make the game feel unresponsive.",
-          "tip": "Use `Spring Arm` for character cameras to add smoothing, collision avoidance, and a 'behind-the-shoulder' feel."
-        },
-        {
-          "type": "quiz",
-          "q": "What is the primary function of attaching a `Spring Arm` component to `BP_Bird` and then attaching the `Camera` to the `Spring Arm`?",
-          "opts": [
-            "The `Spring Arm` component automatically zooms the camera in and out based on the bird's speed.",
-            "It provides a flexible, 'boom' like arm for the camera, allowing it to smoothly follow the bird with lag, avoid collisions with obstacles, and maintain a consistent distance, creating a more professional and less jarring camera experience.",
-            "The `Spring Arm` is only used for VR applications to stabilize the camera.",
-            "It allows the player to manually control the camera's rotation."
-          ],
-          "ans": 1,
-          "explain": "The `Spring Arm` component is incredibly useful for character cameras. It acts as an adjustable arm that can extend from the character, with the camera attached to its end. Its key features include `Target Arm Length` (distance from the character), `Rotation Lag` (for smooth following), and collision detection, which prevents the camera from clipping into geometry. This setup provides a much smoother, more controlled, and visually appealing camera follow than directly attaching the camera to the bird, which would result in an instant, jarring snap. It's fundamental for creating good third-person or side-scrolling camera behavior."
-        },
-        {
-          "type": "learn",
-          "title": "Setting Camera as Active",
-          "icon": "👁️",
-          "body": "Even with the camera component set up in `BP_Bird`, it won't be active by default. We need to tell the engine to use this camera. In `BP_Bird`, select the `Camera` component. In the **Details** panel, under **Camera Settings**, ensure **Auto Activate** is set to `Player 0`. This tells the game that when `BP_Bird` is possessed by `Player 0` (the first local player), its camera should automatically become the active camera. If you have multiple cameras in a scene or on different pawns, this setting determines which one the player sees through. Without this, the game might use a default camera or no camera at all, resulting in a black screen or an unintended view when you start playing. This is a critical step to ensure the player sees the game from the bird's perspective.",
-          "tip": "For debugging, you can eject from the player (F8) and switch between cameras in the viewport using the 'Player' dropdown."
-        },
-        {
-          "type": "learn",
-          "title": "Adjusting Camera Angle",
-          "icon": "📐",
-          "body": "The default camera angle might not be ideal for a side-scrolling Flappy Bird game. With the `Camera` component selected in `BP_Bird`, go to its **Details** panel. Adjust its `Relative Rotation` to `Y=-90` to make it face along the X-axis (forward direction for our game). You might also need to adjust the `Z` position of the `Spring Arm` or `Camera` slightly to center the bird vertically on screen. For example, set `Spring Arm`'s `Relative Location` to `Z=50` to raise it slightly. The goal is to have the bird visible and centered, with enough space above and below to see upcoming obstacles. Experiment with these values in Play In Editor mode to find the perfect framing. Incorrect camera placement can make the bird hard to see or give an unfair advantage/disadvantage by obscuring upcoming pipes.",
-          "tip": "Use the viewport controls (right-click and W,A,S,D) to navigate while in PIE, then use F8 to eject and copy relevant camera coordinates."
-        },
-        {
-          "type": "quiz",
-          "q": "After setting up the `Spring Arm` and `Camera` in `BP_Bird`, if the camera is too far away or too close, which property should be adjusted?",
-          "opts": [
-            "The `Relative Rotation` of the `Camera` component.",
-            "The `Target Arm Length` of the `Spring Arm` component.",
-            "The `Rotation Lag` of the `Spring Arm` component.",
-            "The `Auto Activate` setting of the `Camera` component."
-          ],
-          "ans": 1,
-          "explain": "The `Target Arm Length` property of the `Spring Arm` component directly controls the distance of the camera from its parent (the bird). Increasing this value will move the camera further away, while decreasing it will bring it closer. Adjusting `Relative Rotation` changes the camera's angle, `Rotation Lag` affects how smoothly it follows, and `Auto Activate` determines if it's the active camera. Therefore, to control the camera's distance, `Target Arm Length` is the correct property to modify."
-        }
-      ]
-    },
-    {
-      "id": "10-5",
-      "title": "5. Pipe Spawner Blueprint",
-      "xp": 100,
-      "duration": "Sem 1, Wk 1",
-      "steps": [
-        {
-          "type": "learn",
-          "title": "Creating the Pipe Spawner Blueprint",
-          "icon": "🏭",
-          "body": "We need an actor that will continuously spawn pipes for the bird to navigate. In your `Content Browser`, create a new **Blueprint Class** inheriting from `Actor`. Name it `BP_PipeSpawner`. Open `BP_PipeSpawner`. We won't add any visual components to this Blueprint, as its role is purely functional. This actor will live in our level and manage the creation and initial setup of all the pipe obstacles. Its dedicated role as a spawner keeps our game logic modular and organized. Without a spawner, we would have to manually place pipes, which is not feasible for an endless runner game. This Blueprint is the heart of the game's challenge generation.",
-          "tip": "Keep functional Blueprints (like spawners) separate from visual Blueprints for cleaner code and easier debugging."
-        },
-        {
-          "type": "quiz",
-          "q": "Why is `Actor` chosen as the parent class for `BP_PipeSpawner` instead of `Pawn` or `Character`?",
-          "opts": [
-            "`Actor` is the only class that can execute `Event Tick`.",
-            "`Pawn` and `Character` are designed for player-controlled entities or AI, and `BP_PipeSpawner` is a purely functional object that exists in the world but is not possessed or directly controlled, making `Actor` the most appropriate base class.",
-            "`Actor` automatically handles collision detection for spawned objects.",
-            "`Actor` has built-in functions for spawning other Blueprints."
-          ],
-          "ans": 1,
-          "explain": "`Pawn` and `Character` are specialized `Actor` classes designed for entities that can be possessed by a controller (player or AI). `BP_PipeSpawner` is not meant to be controlled by a player; it's a background process that exists in the world to perform a task. Therefore, the basic `Actor` class is the most suitable parent, as it provides all the necessary functionalities for an object to exist in the game world, receive events, and perform logic, without the overhead of components specific to player-controlled entities. This choice promotes efficient and clear Blueprint design."
-        },
-        {
-          "type": "learn",
-          "title": "Implementing Initial Spawning Logic",
-          "icon": "⏱️",
-          "body": "To make `BP_PipeSpawner` continuously spawn pipes, we'll use a timer. In `BP_PipeSpawner`, add an `Event BeginPlay` node. Drag off and search for **Set Timer by Event**. Connect the `Return Value` (the timer handle) to a `Promote to Variable` node, naming it `PipeSpawnTimerHandle`. This allows us to control the timer later. For the `Event` pin, click `Create Event` and name it `SpawnPipeEvent`. Set the `Time` to `2.0` seconds (pipes will spawn every 2 seconds). Ensure `Looping` is checked to make it repeat indefinitely. Now, double-click `SpawnPipeEvent` to open it. Inside, drag off and search for **Spawn Actor from Class**. For the `Class` pin, we'll need our `BP_Pipe` (which we'll create in the next lesson), so for now, you can leave it as `Actor` or just remember this step. This timer-driven approach ensures a steady stream of obstacles. Forgetting to set `Looping` will result in only one pipe being spawned.",
-          "tip": "Use 'Set Timer by Event' for recurring actions rather than `Event Tick` when precise timing is needed and the action doesn't need to happen every frame."
-        },
-        {
-          "type": "quiz",
-          "q": "Why is `Set Timer by Event` with `Looping` checked preferred for spawning pipes over using `Event Tick` with a `Delay` node?",
-          "opts": [
-            "`Event Tick` is only for visual effects, not spawning.",
-            "`Set Timer by Event` is more resource-intensive but offers better precision.",
-            "`Set Timer by Event` provides a cleaner, more efficient, and precise way to execute an event at regular intervals, independent of frame rate fluctuations, whereas `Event Tick` fires every frame and would require more complex logic to manage intervals, potentially leading to inconsistencies.",
-            "`Event Tick` cannot be used to spawn actors in the game world."
-          ],
-          "ans": 2,
-          "explain": "`Event Tick` fires every single frame, making it inefficient for actions that only need to occur periodically. Using `Event Tick` to manage a spawn interval would require complex logic to track time, which can be prone to errors and frame rate dependencies. `Set Timer by Event` is specifically designed for this purpose: it executes a custom event at exact, user-defined intervals, regardless of frame rate. This ensures consistent pipe spawning, simplifies the Blueprint graph, and is more performant than constantly checking a timer on `Event Tick`. This leads to more reliable and predictable gameplay."
-        },
-        {
-          "type": "learn",
-          "title": "Defining Spawn Location",
-          "icon": "📍",
-          "body": "We need to specify where the pipes will appear. In `BP_PipeSpawner`, drag off `SpawnPipeEvent` and get **Get Actor Location** for `Self` (the spawner). This will be our base spawn point. We want pipes to spawn off-screen to the right. Use a **Make Vector** node. For the `X` value, use a constant like `2000` (or greater than your camera's X-boundary). For `Y`, keep it `0`. For `Z`, we'll randomize this later, but for now, use `0`. Connect this new `Vector` to the `Spawn Transform` `Location` pin of the **Spawn Actor from Class** node. This ensures pipes appear consistently from the right edge of the screen, moving towards the bird. Incorrect X-coordinate could lead to pipes appearing too early or too late, or even off-screen entirely, breaking the game. This fixed spawn point is crucial for predictable gameplay.",
-          "tip": "Always spawn objects slightly off-screen to prevent them from 'popping in' jarringly."
-        },
-        {
-          "type": "learn",
-          "title": "Randomizing Pipe Gap Height",
-          "icon": "🎲",
-          "body": "To create varied challenges, the gap in the pipes needs to be at a random height. In `BP_PipeSpawner`, inside `SpawnPipeEvent`, before `Spawn Actor from Class`, drag off and search for **Random Float in Range**. Set **Min** to `100` and **Max** to `500` (these values will define the vertical offset of the pipe gap). Promote this `Random Float` to a variable"
-        }
-      ]
-    }
-  ]
-}
+  }
 ]
